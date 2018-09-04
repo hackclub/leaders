@@ -19,13 +19,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body>
-    <% flash.each do |key, value| %>
-      <article role="alertdialog" class="flash bg-<%= key %>">
-        <%= value %>
-      </article>
-    <% end %>
     <%= link_to '🏡', root_path, class: 'home pt1 md-pt2 h1' %>
     <main class="container">
+      <% flash.each do |key, value| %>
+        <article role="alertdialog" class="flash bg-<%= key %>">
+          <%= value %>
+        </article>
+      <% end %>
       <%= yield %>
     </main>
     <script type="text/javascript">
