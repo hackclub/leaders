@@ -8,6 +8,7 @@ Our suite of tools for Hack Club Leaders. Built with Rails.
 2. Clone this repo.
 3. ```sh
     docker-compose build
+    docker-compose run web bundle
     docker-compose run web bundle exec rails db:create db:migrate
     docker-compose up
    ```
