@@ -21,7 +21,7 @@ class ClubsController < ApplicationController
 
   def set_club
     @club = clubs.find do |club|
-      club_slug = club[:high_school_name].gsub(' ', '-')
+      club_slug = club[:high_school_name].parameterize
       club_slug == params[:slug]
     end
   end

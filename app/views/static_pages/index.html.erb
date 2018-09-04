@@ -4,7 +4,7 @@
     <% if @clubs.any? %>
       <ul class="list left-align w-100">
         <% @clubs.each do |club| %>
-          <%= link_to club_path(club[:high_school_name].gsub(' ', '-')) do %>
+          <%= link_to club_path(club[:high_school_name].parameterize) do %>
             <li>
               <strong><%= club[:high_school_name] %></strong>
             </li>
