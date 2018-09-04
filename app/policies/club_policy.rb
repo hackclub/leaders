@@ -4,14 +4,6 @@ class ClubPolicy < ApplicationPolicy
   end
 
   def show?
-    record.users.include?(user) || user.admin?
-  end
-
-  def edit?
-    user.admin?
-  end
-
-  def update?
-    user.admin?
+    record.new_leaders.select(email: user.email) || user.admin?
   end
 end
