@@ -1,9 +1,9 @@
 class ClubsController < ApplicationController
   before_action :set_club, only: [:show, :edit]
+  before_action :set_all_clubs, only: :all
 
   # GET /clubs
   def index
-    @clubs = Club.all
     authorize @clubs
   end
 
@@ -19,7 +19,12 @@ class ClubsController < ApplicationController
 
   private
 
+  # (max@maxwofford) both of the set_clubs methods are hacks while I build out a clubs model
+  def set_all_clubs
+    @clubs = current_user.clubs_api_record
+  end
+
   def set_club
-    @club = Club.find(params[:id])
+    @club = current_user.clubs_api_record.find(id: params[:id])
   end
 end
