@@ -1,0 +1,669 @@
+@import 'variables';
+
+@font-face {
+  font-family: Averta;
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(//hackclub.com/fonts/averta-regular.woff2) format('woff2'),
+    url(//hackclub.com/fonts/averta-regular.woff) format('woff');
+  unicode-range: U + 0000 - F8FE, U + F900-FFFF;
+}
+@font-face {
+  font-family: Averta;
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(//hackclub.com/fonts/averta-bold.woff2) format('woff2'),
+    url(//hackclub.com/fonts/averta-bold.woff) format('woff');
+  unicode-range: U + 0000 - F8FE, U + F900-FFFF;
+}
+
+* {
+  box-sizing: border-box;
+  font-weight: inherit;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+html,
+body {
+  min-height: 100%;
+  min-width: 100%;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  font-family: Averta, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    sans-serif;
+  line-height: 1.5;
+  position: relative;
+  width: 100%;
+  -webkit-font-smoothing: antialiased;
+  color: $black;
+  margin: 0;
+}
+
+a {
+  color: currentColor;
+}
+
+strong {
+  font-weight: bold;
+}
+
+textarea {
+  resize: none;
+}
+
+input[type='text'],
+input[type='url'],
+input[type='email'],
+input[type='date'],
+input[type='file'],
+input[type='number'],
+input[type='password'],
+select,
+textarea {
+  -webkit-appearance: none;
+  display: block;
+  vertical-align: middle;
+  max-width: 32rem;
+  min-height: 36px;
+  line-height: inherit;
+  font-family: inherit;
+  font-size: 16px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  width: 100%;
+  color: inherit;
+  background-color: transparent;
+  border-radius: 4px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(221, 225, 228);
+  transition: box-shadow 0.125s ease-out;
+
+  &:focus {
+    box-shadow: rgb(173, 217, 245) 0 0 0 2px;
+    outline: none;
+    border-color: rgb(45, 158, 228);
+  }
+}
+
+.field_with_errors {
+  label {
+    font-weight: bold;
+    color: $red7;
+  }
+  input {
+    border-color: $red7;
+  }
+}
+
+pre {
+  background-color: $gray0;
+  padding: 12px;
+  font-size: 12px;
+}
+
+a {
+  color: $gray8;
+
+  &:hover &:focus {
+    color: $gray9;
+  }
+}
+
+.field {
+  margin-bottom: 0.75rem;
+}
+.actions {
+  margin-top: 1.5rem;
+}
+
+.badge {
+  background-color: $red5;
+  color: $white;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  line-height: 1;
+  margin-left: 1rem;
+  padding: 0.25rem 0.625rem;
+}
+
+.status {
+  border-radius: 4px;
+  display: inline-block;
+  margin-right: 4px;
+  height: 8px;
+  width: 8px;
+  position: relative;
+  bottom: 2px;
+}
+
+#error_explanation {
+  width: 512px;
+  border: 2px solid $red7;
+  padding: 1rem;
+  margin-bottom: 24px;
+  background-color: $red0;
+  border-radius: 4px;
+
+  h2 {
+    color: $red7;
+    border-bottom-color: $red6;
+    margin-top: 0;
+    font-size: 1.25rem;
+  }
+
+  ul {
+    margin-bottom: 0;
+  }
+}
+
+label {
+  display: block;
+}
+
+$select: "url(<%= asset_url 'select.svg' %>)";
+select {
+  background: #{$select} right 0.75rem center / 0.5rem no-repeat $white;
+}
+// rails date(time) inputs
+select[name$='i)]'] {
+  width: 72px;
+  display: inline-block;
+}
+
+.input--short {
+  max-width: 16rem !important;
+}
+
+input[type='submit'],
+.btn {
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  background-color: $red5;
+  color: $white;
+  font-size: 20px;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  font-family: inherit;
+  font-weight: bold;
+  line-height: 1.125;
+  -webkit-appearance: none;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.125) 0 2px 4px;
+  margin: 0;
+  text-decoration: none;
+  transition: box-shadow 0.125s ease-out;
+  border-radius: 9999px;
+  border-width: 0px;
+  border-style: solid;
+}
+.btn.btn--destroy {
+  background-color: $gray0 !important;
+  color: $red5 !important;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: bold;
+  line-height: 1.125;
+}
+h1 {
+  font-size: 40px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #dde1e4;
+  margin-bottom: 1rem;
+}
+h2,
+.summary-h2 {
+  font-size: 28px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #dde1e4;
+  margin-bottom: 0.5rem;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 20px;
+}
+
+p + p {
+  margin-top: 0;
+}
+
+.home {
+  position: absolute;
+  top: 0;
+  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  text-decoration: none;
+}
+
+th {
+  text-align: left;
+  font-weight: bold;
+}
+
+td {
+  padding-left: 0;
+}
+
+.club-summary {
+  display: grid;
+  grid-gap: 1rem;
+  @media (min-width: 32em) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 2rem;
+  }
+}
+.club-summary__panel {
+  padding: 0.75rem;
+  background-color: $white;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.0625),
+    0 12px 24px 0 rgba(0, 0, 0, 0.125);
+  overflow: hidden;
+
+  h2.heading {
+    margin: 0.5rem -0.75rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  &[class*='bg'] h2.heading {
+    color: $white;
+    border-bottom-color: rgba(255, 255, 255, 0.25);
+  }
+
+  .badge {
+    background-color: $gray6;
+  }
+  &[class*='bg'] .badge {
+    background-color: rgba(255, 255, 255, 0.25);
+  }
+
+  p {
+    margin-top: 0.75rem;
+    margin-bottom: 0;
+  }
+
+  &.bg-primary .stat__label {
+    color: $red1;
+  }
+  &.bg-info .stat__label {
+    color: $blue1;
+  }
+  &.bg-accent .stat__label {
+    color: $indigo1;
+  }
+
+  .list {
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  @media screen and (min-width: 32em) {
+    .list {
+      max-height: 16rem;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+}
+
+.stat {
+  display: block;
+}
+.stat__value {
+  font-size: 3rem;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+  text-transform: uppercase;
+  &:before {
+    content: '$';
+    font-size: 1.5rem;
+    vertical-align: super;
+  }
+}
+.stat__label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.stat--small {
+  display: inline-block;
+  .stat__value {
+    font-size: 2rem;
+    &:before {
+      font-size: 1rem;
+    }
+  }
+}
+
+.card {
+  background-color: $white;
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.0625), 0 4px 8px 0 rgba(0, 0, 0, 0.125);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.progress {
+  background-color: $gray2;
+  border-radius: 0.5rem;
+  height: 48px;
+  line-height: 48px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.progress__done,
+.progress__remaining {
+  display: inline-block;
+  height: 100%;
+  overflow: hidden;
+  left: 0;
+}
+.progress__done {
+  position: absolute;
+  padding-left: 8px;
+  background-color: $teal6;
+  color: $white;
+  z-index: 1;
+}
+.progress__remaining {
+  left: 0;
+  right: 0;
+  padding-right: 8px;
+  width: 100%;
+  text-align: right;
+  color: $gray7;
+  z-index: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 64rem;
+  margin: 1rem auto;
+  padding: 0 1rem;
+}
+
+.flash {
+  color: $white;
+  font-weight: bold;
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  max-width: 24rem;
+}
+
+.breadcrumb {
+  text-transform: uppercase;
+  text-decoration: none;
+  color: $gray7;
+  &:after {
+    content: ' »';
+  }
+  + h1,
+  + h2 {
+    margin-top: 0;
+  }
+}
+
+.heading {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  flex-wrap: wrap;
+  .btn {
+    margin-top: 8px;
+    margin-bottom: 4px;
+  }
+  &.summary-h2 {
+    display: inline-flex;
+    width: 100%;
+  }
+}
+h2.heading,
+h3.heading {
+  margin-bottom: 0;
+  .btn {
+    font-size: 0.875rem;
+  }
+}
+@media (min-width: 32em) {
+  .heading {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    .btn {
+      margin-left: auto;
+      margin-top: 0;
+      + .btn {
+        margin-left: 0.5rem;
+      }
+    }
+  }
+}
+
+$chevron: "url(<%= asset_url 'chevron.svg' %>) right 12px center no-repeat";
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  > a,
+  li > a:first-child {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+  }
+  > a > li,
+  > li {
+    border-bottom: 1px solid $gray2;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    background: #{$chevron};
+    &.transaction--positive {
+      background: $teal0 #{$chevron};
+    }
+    &.transaction--negative {
+      background: $red0 #{$chevron};
+    }
+    &.transaction--neutral {
+      background: $gray0 #{$chevron};
+    }
+    &.transaction--warning {
+      background: $orange0 #{$chevron};
+    }
+    &.ultrawhite {
+      padding-right: 0;
+    }
+    > p {
+      margin: 0;
+    }
+  }
+  &.list--row > li,
+  &.list--row > a > li {
+    flex-direction: row;
+    align-items: center;
+  }
+  &.list--row p {
+    flex: 1 1 auto;
+  }
+  .btn {
+    font-size: 0.875rem;
+    @media screen and (min-width: 32em) {
+      margin-top: -4px;
+      margin-bottom: -3px;
+    }
+  }
+}
+.list--row li {
+  flex-direction: row;
+}
+.list--unlinked li {
+  background: white;
+  &.bg-snow {
+    background: $gray0;
+  }
+}
+h1 + .list,
+h1 + .details {
+  margin-top: -1rem;
+}
+h3 + .list {
+  border-top: 1px solid $gray2;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+tr {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.0625);
+}
+th {
+  padding-bottom: 0.125rem;
+}
+td {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+td,
+th {
+  &:first-child {
+    padding-left: 0.75rem;
+  }
+}
+
+.details {
+  > p,
+  > div {
+    display: grid;
+    border-bottom: 1px solid $gray2;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    margin: 0;
+
+    @media (min-width: 32em) {
+      grid-template-columns: 16rem auto;
+      grid-gap: 0.5rem;
+
+      strong {
+        text-align: right;
+      }
+    }
+  }
+}
+
+// Make mobile views nice. Full-bleed separator lines
+@media screen and (max-width: 32em) {
+  table,
+  .list,
+  .heading,
+  .details,
+  h1,
+  h2,
+  h3 {
+    width: 100vw;
+    margin-left: -1rem;
+    margin-right: -1rem;
+  }
+  table {
+    td,
+    th {
+      &:first-child {
+        padding-left: 1rem;
+      }
+      &:last-child {
+        padding-right: 1rem;
+      }
+    }
+  }
+  .list > a > li,
+  .list > li,
+  .heading,
+  .details > p,
+  .details > div,
+  h1,
+  h2,
+  h3 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+.card h1,
+.card h2 {
+  margin-right: 0;
+  width: 100%;
+}
+
+.card .list {
+  &,
+  > a > li,
+  > li {
+    margin-right: 2rem;
+  }
+}
+
+.steps {
+  counter-reset: li;
+  list-style: none;
+  text-align: left;
+  padding: 0;
+  li {
+    position: relative;
+    padding-left: 0.5rem;
+    margin-bottom: 1rem;
+    @media screen and (min-width: 32em) {
+      padding-left: 2rem;
+    }
+    &:before {
+      content: counter(li);
+      counter-increment: li;
+      position: absolute;
+      top: -0.25rem;
+      left: -1rem;
+      height: 2rem;
+      width: 2rem;
+      line-height: 2rem;
+      background-color: $blue5;
+      color: $white;
+      border-radius: 50%;
+      font-weight: bold;
+      text-align: center;
+    }
+    @media screen and (max-width: 32em) {
+      &:before {
+        left: -2rem;
+        top: -0.25rem;
+        height: 1.75rem;
+        line-height: 1.75rem;
+        width: 1.75rem;
+      }
+    }
+  }
+}
+
+@import 'basscss';
+@import 'space';
+@import 'utilities';

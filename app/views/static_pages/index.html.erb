@@ -1,0 +1,17 @@
+<main class="w-100 mx-auto center max-width-4 pt3">
+  <h1 class="w-100">Welcome!</h1>
+  <% if signed_in? %>
+    <p class="slate h3 bold pb4 w-100 border-bottom">No clubs found.</p>
+    <% if admin_signed_in? %>
+      <h2 class="w-100">Grand Central Station of <span class="primary">Leaders</span></h2>
+      <ul class="list left-align w-100">
+        <li>
+        We should build stuff
+        </li>
+      </ul>
+    <% end %>
+    <%= link_to 'Sign out', logout_users_path, method: :delete, class: 'btn mt2' %>
+  <% else %>
+    <%= link_to 'Sign in', auth_users_path, class: 'btn h2' %>
+  <% end %>
+</main>

@@ -1,0 +1,113 @@
+@import 'variables';
+
+.ttu {
+  text-transform: uppercase;
+}
+.ultrawhite {
+  background: $white !important;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.border,
+.border-top,
+.border-right,
+.border-bottom,
+.border-left {
+  border-color: $gray2;
+}
+
+$__shades: (
+  red: $red0,
+  orange: $orange0,
+  yellow: $yellow0,
+  green: $teal0,
+  blue: $blue0,
+  neutral: $gray0
+);
+
+@each $name, $val in $__shades {
+  .shade-#{$name} {
+    background-color: $val;
+  }
+}
+
+$__palette: (
+  primary: $red5,
+  accent: $indigo4,
+  info: $blue5,
+  success: $teal6,
+  error: $red7,
+  warning: $orange5,
+  pending: $yellow5,
+  black: $gray9,
+  slate: $gray8,
+  muted: $gray7,
+  smoke: $gray2,
+  snow: $gray0,
+  white: $white
+);
+
+@each $name, $val in $__palette {
+  .#{$name} {
+    color: $val;
+  }
+
+  .bg-#{$name} {
+    background-color: $val;
+  }
+
+  .b--#{$name} {
+    border-color: $val;
+  }
+}
+
+.w-10 {
+  width: 10%;
+}
+.w-20 {
+  width: 20%;
+}
+.w-25 {
+  width: 25%;
+}
+.w-30 {
+  width: 30%;
+}
+.w-40 {
+  width: 40%;
+}
+.w-50 {
+  width: 50%;
+}
+.w-60 {
+  width: 60%;
+}
+.w-70 {
+  width: 70%;
+}
+.w-75 {
+  width: 75%;
+}
+.w-80 {
+  width: 80%;
+}
+.w-90 {
+  width: 90%;
+}
+.w-100 {
+  width: 100%;
+}
+
+.w-third {
+  width: calc(100% / 3);
+}
+.w-two-thirds {
+  width: calc(100% / 1.5);
+}
+.w-auto {
+  width: auto;
+}
