@@ -14,5 +14,5 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :clubs, only: [:index, :show]
+  resources :clubs, only: [:index, :show], param: :slug
 end

@@ -20,6 +20,6 @@ class ClubsController < ApplicationController
   end
 
   def set_club
-    @club = clubs.find(id: params[:id])
+    @club = clubs.map{ |club| club.high_school_name.gsub('-', ' ') }.select{ |slug| params[:slug] }
   end
 end
