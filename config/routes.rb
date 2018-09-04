@@ -13,4 +13,6 @@ Rails.application.routes.draw do
       delete 'logout', to: 'users#logout'
     end
   end
+
+  resources :clubs, only: [:index, :show, :edit]
 end
