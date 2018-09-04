@@ -27,6 +27,10 @@ class ApiService
   end
 
   def self.get_user(user_id, access_token)
-    req(:get, "/v1/users/#{user_id}", nil, access_token) 
+    req(:get, "/v1/users/#{user_id}", nil, access_token)
+  end
+
+  def self.get_new_leaders_new_clubs(leader_id, access_token)
+    req(:get, "/v1/new_leaders/#{leader_id}/new_clubs", nil, access_token)
   end
 end

@@ -15,6 +15,10 @@ module SessionsHelper
     signed_in? && current_user.admin?
   end
 
+  def leader_signed_in?
+    signed_in? && current_user.leader?
+  end
+
   def current_user=(user)
     @current_user = user
   end
