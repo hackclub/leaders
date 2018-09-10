@@ -3,7 +3,7 @@ require 'base64'
 require 'yaml'
 
 class Subdomains
-  $client = Octokit::Client.new(:login => 'Orpheus', :password => 'OrpheusPassword') # put actual credentials later
+  $client = Octokit::Client.new(access_token: Rails.application.credentials[:github_token])
   contents = $client.contents("hackclub/dns", :path => "hackclub.com.yaml")
   $decoded_content = Base64.decode64(contents.content)
   $blob_sha = contents.sha
