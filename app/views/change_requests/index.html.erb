@@ -1,1 +1,4 @@
-<%= render 'form', change_request: @new_change_request %>
+<%= render 'form', change_request: @new_change_request, local: true %>
+<% @change_requests.each do |req| %>
+  <%= render 'form', change_request: req %>
+<% end %>
