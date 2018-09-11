@@ -16,5 +16,5 @@ Rails.application.routes.draw do
 
   resources :clubs, only: [:index, :show], param: :slug
 
-  resources :subdomains, only: [:new, :create, :show]
+  resources :subdomains, only: [:new, :create, :show, :update], param: :slug
 end
