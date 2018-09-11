@@ -15,4 +15,6 @@ Rails.application.routes.draw do
   end
 
   resources :clubs, only: [:index, :show], param: :slug
+
+  resources :subdomains, only: [:new, :create, :show]
 end

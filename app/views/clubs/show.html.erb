@@ -1,2 +1,7 @@
 <h1><%= @club[:high_school_name] %></h1>
-<pre> <%= JSON.pretty_generate @club %> </pre>
+<% if @club[:club_website] %>
+  <%= link_to @club[:club_website] %>
+<% end %>
+
+<%= render 'subdomains/form', subdomain: @subdomain %>
+<!-- <pre> <%= JSON.pretty_generate @club %> </pre> -->

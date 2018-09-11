@@ -1,0 +1,24 @@
+<%= form_with model: subdomain do |form| %>
+
+  <% if subdomain.errors.any? %>
+    <p><%= pluralize(subdomain.errors.count, 'error') %> prohibited this subdomain from being saved:</p>
+    <ul>
+      <% subdomain.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <div class="field">
+    <%= form.hidden_field :club_id, value: subdomain.club_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, value: subdomain.name %>.hackclub.com
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
