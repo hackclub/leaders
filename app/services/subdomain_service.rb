@@ -4,7 +4,7 @@ require 'yaml'
 
 
 class SubdomainService
-  REPO = "prophetorpheus/dns"
+  REPO = "hackclub/dns"
   FILE = "hackclub.com.yaml"
 
   def self.append_subdomain(subdomain, host)
