@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   before_create :create_session_token
 
+  has_many :change_requests
+
   validates_presence_of :api_id, :api_access_token, :email
   validates_uniqueness_of :api_id, :api_access_token, :email
 

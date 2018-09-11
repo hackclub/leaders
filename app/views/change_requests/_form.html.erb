@@ -1,0 +1,26 @@
+<%= form_with(model: change_request, url: subdomain_change_requests_path) do |form| %>
+  <% if change_request.errors.any? %>
+    <p><%= pluralize(change_request.errors.count, 'error') %> prohibited this change_request from being saved:</p>
+    <ul>
+      <% change_request.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <%= form.hidden_field :subdomain_id, value: @subdomain.id %>
+
+  <div class="field">
+    <%= form.label :value %>
+    <%= form.text_field :value, value: change_request.value %>
+  </div>
+
+  <div class="field">
+    <%= form.label :type %>
+    <%= form.select :type, ChangeRequest.record_types, value: change_request.type %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit value: 'Create' %>
+  </div>
+<% end %>

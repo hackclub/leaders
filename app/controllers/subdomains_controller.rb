@@ -1,6 +1,8 @@
 class SubdomainsController < ApplicationController
   before_action :set_subdomain, only: [:show, :update]
+
   def show
+    @change_requests = @subdomain.change_requests
   end
 
   def update
