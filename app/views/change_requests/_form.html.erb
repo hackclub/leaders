@@ -9,6 +9,7 @@
   <% end %>
 
   <%= form.hidden_field :subdomain_id, value: @subdomain.id %>
+  <%= form.hidden_field :user_id, value: change_request.user_id %>
 
   <div class="field">
     <%= form.label :value %>
@@ -17,10 +18,19 @@
 
   <div class="field">
     <%= form.label :record_type %>
-    <%= form.select :record_type, ChangeRequest.record_types, value: change_request.record_type %>
+    <%= form.select :record_type, ChangeRequest.record_types.keys, value: change_request.record_type %>
   </div>
 
   <div class="actions">
     <%= form.submit value: 'Create' %>
   </div>
+<% end %>
+
+<% unless change_request[:id].nil? %>
+  <%= form_with(model: change_request, url: subdomain_change_request_path(@subdomain, change_request), method: :delete) do |form| %>
+    <div class="actions">
+      <%= form.hidden_field :id, value: change_request[:id] %>
+      <%= form.submit value: 'Destroy' %>
+    </div>
+  <% end %>
 <% end %>
