@@ -25,7 +25,8 @@ class SubdomainService
 
     client.update_contents(REPO, FILE, message, blob_sha, new_content, branch: new_branch_name)
 
-    client.create_pull_request(REPO, "master", new_branch_name, message)
+    pull_request = client.create_pull_request(REPO, "master", new_branch_name, message)
+    pull_request[:html_url]
   end
 
   private
