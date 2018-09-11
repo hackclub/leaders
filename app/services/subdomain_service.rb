@@ -7,33 +7,40 @@ class SubdomainService
   REPO = "hackclub/dns"
   FILE = "hackclub.com.yaml"
 
-  def self.append_subdomain(subdomain, host)
+  def self.append_subdomain(subdomain, type, value)
     old_file = client.contents(REPO, path: FILE)
+    blob_sha = old_file.sha
 
     head_sha = client.ref(REPO, "heads/master")[:object][:sha]
-    branches = client.refs(REPO).pluck(:name)
+    branches = client.branches(REPO).pluck(:name)
 
     new_branch_name = branch_name(branches, subdomain)
     new_ref_name    = "heads/#{new_branch_name}"
 
     client.create_ref(REPO, new_ref_name, head_sha)
-    contents = client.contents(REPO, ref: new_ref_name, path: FILE)
 
-    decoded_content = Base64.decode64(old_file.content)
+    new_content = updated_content(old_file.content, subdomain, type, value)
 
-    new_content = YAML.load(decoded_content + subdomain + ":\n  ttl: 1\n  type: CNAME\n  value: " + host + ".")
-    sorted = Hash[ new_content.sort_by { |key, val| key } ]
+    message = "#{type} record for #{subdomain}.hackclub.com"
 
-    message = "#{decoded_content[subdomain].nil? ? 'add' : 'update'} subdomain #{subdomain}"
+    client.update_contents(REPO, FILE, message, blob_sha, new_content, branch: new_branch_name)
 
-    blob_sha = contents.sha
-
-    client.update_contents(REPO, FILE, message, blob_sha, sorted.to_yaml, branch: new_branch_name)
-
-    client.create_pull_request(REPO, "master", new_branch_name, "#{Time.now} #{message}")
+    client.create_pull_request(REPO, "master", new_branch_name, message)
   end
 
   private
+
+  def self.updated_content(content, subdomain, type, value)
+    decoded_content = Base64.decode64(content)
+    data = YAML.load(decoded_content)
+    data[subdomain] = {
+      ttl: 1,
+      type: type,
+      value: "#{value}."
+    }
+    sorted_data = Hash[ data.sort_by { |key, val| key } ]
+    sorted_data.to_yaml
+  end
 
   # Format: YYYY-MM-DD_add_example_hackclub_com
   #
