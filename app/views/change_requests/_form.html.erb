@@ -16,8 +16,8 @@
   </div>
 
   <div class="field">
-    <%= form.label :type %>
-    <%= form.select :type, ChangeRequest.record_types, value: change_request.type %>
+    <%= form.label :record_type %>
+    <%= form.select :record_type, ChangeRequest.record_types, value: change_request.record_type %>
   </div>
 
   <div class="actions">
