@@ -34,7 +34,11 @@ class User < ApplicationRecord
 
   def clubs_api_record
     return nil unless leader?
-    @clubs ||= ApiService.get_new_leaders_new_clubs(self.leader[:id], self.api_access_token)
+    @clubs ||= ApiService
+      .get_new_leaders_new_clubs(self.leader[:id], self.api_access_token)
+      .each { |club|
+        club[:slug] = club[:high_school_name].parameterize
+      }
   end
 
   private

@@ -24,6 +24,7 @@ class ClubsController < ApplicationController
       club_slug = club[:high_school_name].parameterize
       club_slug == params[:slug]
     end
+    @subdomain = Subdomain.find_or_create_by(club_id: @club[:id])
   end
 
   def clubs
