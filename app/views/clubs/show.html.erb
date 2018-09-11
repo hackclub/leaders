@@ -3,5 +3,10 @@
   <%= link_to @club[:club_website] %>
 <% end %>
 
-<%= render 'subdomains/form', subdomain: @subdomain %>
-<!-- <pre> <%= JSON.pretty_generate @club %> </pre> -->
+<% if @subdomain.full_url %>
+  <%= link_to "Edit DNS records for #{@subdomain.full_url}", subdomain_path(@subdomain) %>
+<% else %>
+  <%= render 'subdomains/form', subdomain: @subdomain %>
+<% end %>
+
+<pre> <%= JSON.pretty_generate @club %> </pre>
