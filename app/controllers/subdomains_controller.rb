@@ -10,11 +10,12 @@ class SubdomainsController < ApplicationController
   end
 
   def create
-    @subdomain = Subdomain.create(subdomain_params)
+    @subdomain = Subdomain.new(subdomain_params)
     if @subdomain.save
       redirect_to subdomain_change_requests_path(@subdomain)
     else
-      render @subdomain.club
+      @club = current_user.club_for_id(@subdomain.club_id)
+      render 'clubs/show', slug: @club[:slug]
     end
   end
 
