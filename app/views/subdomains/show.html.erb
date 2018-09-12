@@ -1,4 +1,15 @@
-<p>DNS records for...</p>
-<h3>https://<%= @subdomain.full_url %></h3>
+<p id="notice"><%= notice %></p>
 
-<%= render 'change_requests/form' %>
+<p>
+  <strong>Name:</strong>
+  <%= @subdomain.name %>
+</p>
+
+<p>
+  <strong>Club:</strong>
+  <%= @subdomain.club_id %>
+</p>
+
+<%= link_to 'Add rules', new_change_request_path %> |
+<%= link_to 'Edit', edit_subdomain_path(@subdomain) %> |
+<%= link_to 'Back', subdomains_path %>
