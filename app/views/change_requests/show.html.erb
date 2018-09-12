@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @change_request.value %>
+</p>
+
+<p>
+  <strong>Record type:</strong>
+  <%= @change_request.record_type %>
+</p>
+
+<p>
+  <strong>Subdomain:</strong>
+  <%= @change_request.subdomain_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @change_request.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_change_request_path(@change_request) %> |
+<%= link_to 'Back', change_requests_path %>
