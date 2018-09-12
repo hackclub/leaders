@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Subdomains</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Club</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @subdomains.each do |subdomain| %>
+      <tr>
+        <td><%= subdomain.name %></td>
+        <td><%= subdomain.club_id %></td>
+        <td><%= link_to 'Show', subdomain %></td>
+        <td><%= link_to 'Edit', edit_subdomain_path(subdomain) %></td>
+        <td><%= link_to 'Destroy', subdomain, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Subdomain', new_subdomain_path %>
