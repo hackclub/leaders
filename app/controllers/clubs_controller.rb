@@ -15,7 +15,7 @@ class ClubsController < ApplicationController
   private
 
   def set_club
-    @club = current_user.club_for_slug(params[:slug])
+    @club = Club.find_by(slug: params[:slug])
     @subdomain = Subdomain.find_or_initialize_by(club_id: @club[:id])
   end
 end

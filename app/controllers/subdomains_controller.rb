@@ -1,22 +1,35 @@
 class SubdomainsController < ApplicationController
-  before_action :set_subdomain, only: [:update]
+  before_action :set_subdomain, only: [:edit, :update, :create, :show]
 
-  def update
-     if @subdomain.update(subdomain_params)
-       redirect_to @subdomain.club
-     else
-       render @subdomain.club
-     end
+  def index
+    @subdomain = current_user.admin? ? Subdomain.all : current_user.clubs.subdomains
+  end
+
+  def show
+  end
+
+  def new
+    @subdomain = Subdomain.new
   end
 
   def create
     @subdomain = Subdomain.new(subdomain_params)
     if @subdomain.save
-      redirect_to subdomain_change_requests_path(@subdomain)
+      redirect_to @subdomain
     else
-      @club = current_user.club_for_id(@subdomain.club_id)
-      render 'clubs/show', slug: @club[:slug]
+      render :new
     end
+  end
+
+  def edit
+  end
+
+  def update
+     if @subdomain.update(subdomain_params)
+       redirect_to @subdomain.club
+     else
+       render :edit
+     end
   end
 
   private
