@@ -1,6 +1,7 @@
 class Subdomain < ApplicationRecord
   validates_uniqueness_of :club_id, :name
   validates_presence_of :club_id, :name
+  validate :vacant_subdomain_name, on: :create
 
   has_many :change_requests
 
@@ -14,5 +15,12 @@ class Subdomain < ApplicationRecord
 
   def full_url
     "#{name}.hackclub.com"
+  end
+
+  private
+
+  def vacant_subdomain_name
+    return if GithubService.subdomain_available? name
+    errors.add(:name, 'already taken')
   end
 end
