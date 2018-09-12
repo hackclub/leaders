@@ -43,6 +43,30 @@ class User < ApplicationRecord
       }
   end
 
+  alias_method :clubs, :clubs_api_record
+
+  #       @)@)
+  #       _|_|                                      (   )
+  #     _(___,`\      _,--------------._          (( /`, ))
+  #     `==`   `*-_,'          O        `~._   ( ( _/  |  ) )
+  #      `,    :         o              }   `~._.~`  * ',
+  #        \      -         _      O              -    ,'
+  #        |  ;      -          -      "      ;     o  /
+  #        |      O                        o        ,-`
+  #        \          _,-:""""""'`:-._    -  .   O /
+  #         `""""""~'`                `._      _,-`
+  #                                      """"""
+  def club_for_slug(slug)
+    self.clubs.find do |club|
+      club_slug = club[:high_school_name].parameterize
+      club_slug == slug
+    end
+  end
+
+  def club_for_id(id)
+    self.clubs.find { |c| c[:id] == id }
+  end
+
   private
 
   def create_session_token

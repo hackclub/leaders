@@ -1,4 +1,4 @@
-<%= form_with model: subdomain do |form| %>
+<%= form_with model: subdomain, local: true do |form| %>
 
   <% if subdomain.errors.any? %>
     <p><%= pluralize(subdomain.errors.count, 'error') %> prohibited this subdomain from being saved:</p>
