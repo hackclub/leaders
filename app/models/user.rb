@@ -2,6 +2,7 @@ class User < ApplicationRecord
   before_create :create_session_token
 
   has_many :change_requests
+  has_and_belongs_to_many :clubs
 
   validates_presence_of :api_id, :api_access_token, :email
   validates_uniqueness_of :api_id, :api_access_token, :email
@@ -37,34 +38,10 @@ class User < ApplicationRecord
   def clubs_api_record
     return nil unless leader?
     @clubs ||= ApiService
-      .get_new_leaders_new_clubs(self.leader[:id], self.api_access_token)
+      .get_clubs(self.leader[:id], self.api_access_token)
       .each { |club|
         club[:slug] = club[:high_school_name].parameterize
       }
-  end
-
-  alias_method :clubs, :clubs_api_record
-
-  #       @)@)
-  #       _|_|                                      (   )
-  #     _(___,`\      _,--------------._          (( /`, ))
-  #     `==`   `*-_,'          O        `~._   ( ( _/  |  ) )
-  #      `,    :         o              }   `~._.~`  * ',
-  #        \      -         _      O              -    ,'
-  #        |  ;      -          -      "      ;     o  /
-  #        |      O                        o        ,-`
-  #        \          _,-:""""""'`:-._    -  .   O /
-  #         `""""""~'`                `._      _,-`
-  #                                      """"""
-  def club_for_slug(slug)
-    self.clubs.find do |club|
-      club_slug = club[:high_school_name].parameterize
-      club_slug == slug
-    end
-  end
-
-  def club_for_id(id)
-    self.clubs.find { |c| c[:id] == id }
   end
 
   private
