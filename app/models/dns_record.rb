@@ -1,4 +1,4 @@
-class ChangeRequest < ApplicationRecord
+class DnsRecord < ApplicationRecord
   def self.record_types
     %i(CNAME A)
   end

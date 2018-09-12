@@ -10,25 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_12_020307) do
+ActiveRecord::Schema.define(version: 2018_09_12_043151) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "change_requests", force: :cascade do |t|
-    t.datetime "pr_opened_at"
-    t.datetime "pr_merged_at"
-    t.datetime "pr_closed_at"
-    t.string "pr_url"
-    t.bigint "user_id"
-    t.bigint "subdomain_id"
-    t.string "value"
-    t.integer "record_type"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["subdomain_id"], name: "index_change_requests_on_subdomain_id"
-    t.index ["user_id"], name: "index_change_requests_on_user_id"
-  end
 
   create_table "clubs", force: :cascade do |t|
     t.integer "api_id"
@@ -41,6 +26,17 @@ ActiveRecord::Schema.define(version: 2018_09_12_020307) do
   create_table "clubs_users", id: false, force: :cascade do |t|
     t.bigint "club_id", null: false
     t.bigint "user_id", null: false
+  end
+
+  create_table "dns_records", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "subdomain_id"
+    t.string "value"
+    t.integer "record_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["subdomain_id"], name: "index_dns_records_on_subdomain_id"
+    t.index ["user_id"], name: "index_dns_records_on_user_id"
   end
 
   create_table "subdomains", force: :cascade do |t|
@@ -61,6 +57,6 @@ ActiveRecord::Schema.define(version: 2018_09_12_020307) do
     t.index ["api_id"], name: "index_users_on_api_id", unique: true
   end
 
-  add_foreign_key "change_requests", "subdomains"
-  add_foreign_key "change_requests", "users"
+  add_foreign_key "dns_records", "subdomains"
+  add_foreign_key "dns_records", "users"
 end

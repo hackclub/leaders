@@ -1,10 +1,10 @@
-<%= form_with(model: change_request, local: true) do |form| %>
-  <% if change_request.errors.any? %>
+<%= form_with(model: dns_record, local: true) do |form| %>
+  <% if dns_record.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(change_request.errors.count, "error") %> prohibited this change_request from being saved:</h2>
+      <h2><%= pluralize(dns_record.errors.count, "error") %> prohibited this dns_record from being saved:</h2>
 
       <ul>
-      <% change_request.errors.full_messages.each do |message| %>
+      <% dns_record.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -18,7 +18,7 @@
 
   <div class="field">
     <%= form.label :record_type %>
-    <%= form.select :record_type, ChangeRequest.record_types.keys, prompt: 'Select one' %>
+    <%= form.select :record_type, DnsRecord.record_types.keys, prompt: 'Select one' %>
   </div>
 
   <div class="field">

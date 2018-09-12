@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @dns_record.value %>
+</p>
+
+<p>
+  <strong>Record type:</strong>
+  <%= @dns_record.record_type %>
+</p>
+
+<p>
+  <strong>Subdomain:</strong>
+  <%= @dns_record.subdomain_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @dns_record.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_dns_record_path(@dns_record) %> |
+<%= link_to 'Back', dns_records_path %>

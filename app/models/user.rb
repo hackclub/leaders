@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   before_create :create_session_token
 
-  has_many :change_requests
+  has_many :dns_records
   has_and_belongs_to_many :clubs
 
   validates_presence_of :api_id, :api_access_token, :email

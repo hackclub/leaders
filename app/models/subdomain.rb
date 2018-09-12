@@ -3,7 +3,7 @@ class Subdomain < ApplicationRecord
   validates_presence_of :club_id, :name
   validate :vacant_subdomain_name, on: :create
 
-  has_many :change_requests
+  has_many :dns_records
   belongs_to :club
 
   def slug
