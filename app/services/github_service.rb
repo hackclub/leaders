@@ -3,7 +3,7 @@ require 'base64'
 require 'yaml'
 
 
-class SubdomainService
+class GithubService
   REPO = "hackclub/dns"
   FILE = "hackclub.com.yaml"
 
@@ -27,6 +27,16 @@ class SubdomainService
 
     pull_request = client.create_pull_request(REPO, "master", new_branch_name, message)
     pull_request[:html_url]
+  end
+
+  def self.subdomain_available?(name)
+    used_subdomains = get_content.keys
+    !used_subdomains.include? name
+  end
+
+  def self.get_content
+    decoded_content = Base64.decode64(client.contents(REPO, path: FILE).content)
+    YAML.load(decoded_content)
   end
 
   private
