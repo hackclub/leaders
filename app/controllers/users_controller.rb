@@ -31,6 +31,10 @@ class UsersController < ApplicationController
     u.save
 
     sign_in u
+
+    # Update the club records for the users
+    ApiService.update_clubs_for_user(current_user)
+
     redirect_back_or root_path
   end
 

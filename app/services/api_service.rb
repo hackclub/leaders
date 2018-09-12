@@ -30,7 +30,22 @@ class ApiService
     req(:get, "/v1/users/#{user_id}", nil, access_token)
   end
 
-  def self.get_new_leaders_new_clubs(leader_id, access_token)
+  def self.get_clubs(leader_id, access_token)
     req(:get, "/v1/new_leaders/#{leader_id}/new_clubs", nil, access_token)
+  end
+
+  def self.update_clubs_for_user(user)
+    clubs = get_clubs(user.leader[:id], user.api_access_token)
+    ActiveRecord::Base.transaction do
+      user.clubs = []
+      club_records = clubs.map do |club|
+        club_record = Club.find_or_initialize_by({api_id: club[:id]})
+        club_record.name = club[:high_school_name]
+        club_record.slug = club[:high_school_name].parameterize
+        club_record
+      end
+      user.clubs = club_records
+      club_records.each(&:save!) && user.save!
+    end
   end
 end
