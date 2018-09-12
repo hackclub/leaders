@@ -3,7 +3,7 @@
 <% if @subdomain.id.nil? %>
   <%= link_to "Create a subdomain", new_subdomain_path %>
 <% else %>
-  <%= link_to "Edit DNS records for #{@subdomain.full_url}", subdomain_change_requests_path(@subdomain) %>
+  <%= link_to "Show details about #{@subdomain.full_url}", @subdomain %>
 <% end %>
 
 <pre> <%= JSON.pretty_generate @club %> </pre>

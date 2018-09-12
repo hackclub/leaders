@@ -2,7 +2,7 @@ class SubdomainsController < ApplicationController
   before_action :set_subdomain, only: [:edit, :update, :create, :show]
 
   def index
-    @subdomain = current_user.admin? ? Subdomain.all : current_user.clubs.subdomains
+    @subdomains = current_user.admin? ? Subdomain.all : current_user.clubs.map{ |c| c.subdomains }.flatten
   end
 
   def show
@@ -35,9 +35,7 @@ class SubdomainsController < ApplicationController
   private
 
   def set_subdomain
-    @subdomain = Subdomain.find do |subdomain|
-      subdomain.slug == params[:slug]
-    end
+    @subdomain = Subdomain.find_by(name: params[:slug])
   end
 
   def subdomain_params
