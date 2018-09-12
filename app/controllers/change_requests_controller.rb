@@ -20,7 +20,7 @@ class ChangeRequestsController < ApplicationController
     @change_request = ChangeRequest.new(change_request_params)
     @change_request.user = current_user
     if @change_request.save
-      render @change_request
+      render 'change_requests'
     else
       redirect_to :new
     end
@@ -32,7 +32,7 @@ class ChangeRequestsController < ApplicationController
     if @change_request.destroy
       redirect_to @subdomain
     else
-      redirect_to @change_request
+      redirect_to change_requests_path
     end
   end
 
