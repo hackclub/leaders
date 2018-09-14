@@ -4,6 +4,7 @@ class Subdomain < ApplicationRecord
   validate :vacant_subdomain_name, on: :create
 
   has_many :dns_records
+  has_many :pull_requests
   belongs_to :club
 
   def slug

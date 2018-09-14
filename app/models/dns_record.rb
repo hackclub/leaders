@@ -7,13 +7,21 @@ class DnsRecord < ApplicationRecord
 
   belongs_to :user
   belongs_to :subdomain
+  has_one :change_request
 
   validates_presence_of :user_id, :value, :record_type
+  validates_uniqueness_of :record_type, scope: :subdomain
 
-  private
+  after_save do |dns_record|
+    # Get the branch's open PR or create a new one
 
-  def submit_pull_request
-    pr_url = SubdomainService.append_subdomain(record_type, value)
-    self.pr_url = pr_url
+    subdomain.pull_requests.active.each(&:update_github_status)
+    active_pr = subdomain.pull_requests.order(:created_at).active.last
+
+    if active_pr
+      active_pr.update_github_changes(subdomain)
+    else
+      PullRequest.create!(subdomain: subdomain)
+    end
   end
 end
