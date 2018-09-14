@@ -1,6 +1,6 @@
 class DnsRecord < ApplicationRecord
   def self.record_types
-    %i(CNAME A)
+    %i(CNAME A AAAA TXT)
   end
 
   enum record_type: record_types
