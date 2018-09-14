@@ -1,6 +1,6 @@
 class Subdomain < ApplicationRecord
-  validates_uniqueness_of :club_id, :name
-  validates_presence_of :club_id, :name
+  validates_uniqueness_of :name
+  validates_presence_of :name
   validate :vacant_subdomain_name, if: :name_changed?
 
   has_many :dns_records
