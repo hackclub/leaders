@@ -1,9 +1,9 @@
 <h1><%= @club[:high_school_name] %></h1>
 
-<% if @subdomain.id.nil? %>
-  <%= link_to "Create a subdomain", new_subdomain_path %>
+<% if @subdomains.where.not(id: nil).any? %>
+  <%= link_to "Show details about subdomains", subdomains_path %>
 <% else %>
-  <%= link_to "Show details about #{@subdomain.full_url}", @subdomain %>
+  <%= link_to "Create a subdomain", new_subdomain_path %>
 <% end %>
 
 <pre> <%= JSON.pretty_generate @club %> </pre>
