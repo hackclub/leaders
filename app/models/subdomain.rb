@@ -7,7 +7,7 @@ class Subdomain < ApplicationRecord
   has_many :pull_requests
   belongs_to :club
 
-  before_save :create_pr, if: :name_changed?
+  before_update :create_pr, if: :name_changed?
 
   def slug
     name
