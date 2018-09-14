@@ -33,7 +33,7 @@ class UsersController < ApplicationController
     sign_in u
 
     # Update the club records for the users
-    ApiService.update_clubs_for_user(current_user)
+    ApiService.update_clubs_for_user(current_user) if current_user.leader?
 
     redirect_back_or root_path
   end
