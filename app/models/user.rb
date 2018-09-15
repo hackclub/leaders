@@ -35,15 +35,6 @@ class User < ApplicationRecord
     @api_record ||= ApiService.get_user(self.api_id, self.api_access_token)
   end
 
-  def clubs_api_record
-    return nil unless leader?
-    @clubs ||= ApiService
-      .get_clubs(self.leader[:id], self.api_access_token)
-      .each { |club|
-        club[:slug] = club[:high_school_name].parameterize
-      }
-  end
-
   private
 
   def create_session_token
