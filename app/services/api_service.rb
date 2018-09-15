@@ -42,6 +42,7 @@ class ApiService
         club_record = Club.find_or_initialize_by({api_id: club[:id]})
         club_record.name = club[:high_school_name]
         club_record.slug = club[:high_school_name].parameterize
+        club_record.api_record = club
         club_record
       end
       user.clubs = club_records
