@@ -1,8 +1,10 @@
 class SubdomainsController < ApplicationController
-  before_action :set_subdomain, only: [:edit, :update, :create, :show]
+  before_action :signed_in_user
+  before_action :set_subdomain, only: [:edit, :update, :show]
 
   def index
     @subdomains = current_user.admin? ? Subdomain.all : current_user.clubs.map{ |c| c.subdomains }.flatten
+    authorize @subdomains
   end
 
   def show
@@ -14,6 +16,7 @@ class SubdomainsController < ApplicationController
 
   def create
     @subdomain = Subdomain.new(subdomain_params)
+    authorize @subdomain
     if @subdomain.save
       redirect_to @subdomain
     else
@@ -25,20 +28,21 @@ class SubdomainsController < ApplicationController
   end
 
   def update
-     if @subdomain.update(subdomain_params)
-       redirect_to @subdomain.club
-     else
-       render :edit
-     end
+    if @subdomain.update(subdomain_params)
+      redirect_to @subdomain.club
+    else
+      render :edit
+    end
   end
 
   private
 
-  def set_subdomain
-    @subdomain = Subdomain.find_by(name: params[:slug])
-  end
-
   def subdomain_params
     params.require(:subdomain).permit(:name, :slug, :club_id)
+  end
+
+  def set_subdomain
+    @subdomain = Subdomain.find_by(name: params[:slug])
+    authorize @subdomain
   end
 end

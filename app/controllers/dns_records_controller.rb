@@ -1,15 +1,25 @@
 class DnsRecordsController < ApplicationController
-  before_action :set_subdomain
-  before_action :set_dns_record, only: [:show, :edit]
+  before_action :signed_in_user
+  before_action :set_dns_record, only: [:edit, :update, :show, :destroy]
 
   def index
+    authorize DnsRecord
+
     @dns_records = current_user.clubs.map { |c| c.subdomains.map { |s| s.dns_records } }.flatten
+  end
+
+  def show
   end
 
   def edit
   end
 
-  def show
+  def update
+    if @dns_record.update(dns_record_params)
+      redirect_to @dns_record
+    else
+      render :edit
+    end
   end
 
   def new
@@ -19,20 +29,22 @@ class DnsRecordsController < ApplicationController
   def create
     @dns_record = DnsRecord.new(dns_record_params)
     @dns_record.user = current_user
+
+    authorize @dns_record
+
     if @dns_record.save
-      render 'dns_records'
+      redirect_to dns_records_path
     else
-      redirect_to :new
+      render :new
     end
   end
 
   def destroy
-    @dns_record = DnsRecord.find(params[:id])
     @subdomain = @dns_record.subdomain
-    if @dns_record.destroy
+    if @dns_record.update(deleted_at: Time.now)
       redirect_to @subdomain
     else
-      redirect_to dns_records_path
+      render :show
     end
   end
 
@@ -44,11 +56,6 @@ class DnsRecordsController < ApplicationController
 
   def set_dns_record
     @dns_record = DnsRecord.find(params[:id])
-  end
-
-  def set_subdomain
-    @subdomain = Subdomain.find do |subdomain|
-      subdomain.slug == params[:subdomain_slug]
-    end
+    authorize @dns_record
   end
 end

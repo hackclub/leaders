@@ -1,8 +1,9 @@
 class StaticPagesController < ApplicationController
+  before_action :signed_in_user
+
   def index
-    if signed_in?
-      @clubs = current_user.clubs
-      redirect_to @clubs.first if @clubs.count == 1
-    end
+    @clubs = current_user.clubs
+    skip_authorization
+    redirect_to @clubs.first if @clubs.count == 1
   end
 end
