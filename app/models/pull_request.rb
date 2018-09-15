@@ -34,6 +34,6 @@ class PullRequest < ApplicationRecord
   def init_on_github
     gh_pr = GithubService.generate_and_submit_pr(subdomain)
     self.number = gh_pr[:number]
-    self.repo = "maxwofford/dns"
+    self.repo = "hackclub/dns"
   end
 end
