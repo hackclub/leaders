@@ -22,7 +22,8 @@ class GithubService
       end
     end
 
-    create_pr(dns_data.to_yaml, "Update #{subdomain[:name]}.hackclub.com", subdomain[:name])
+    sorted_dns_data = sort_records dns_data
+    create_pr(sorted_dns_data.to_yaml, "Update #{subdomain[:name]}.hackclub.com", subdomain[:name])
   end
 
   def self.update_pr(pr)
@@ -45,7 +46,8 @@ class GithubService
       end
     end
 
-    client.update_contents(REPO, FILE, "Update #{subdomain[:name]}.hackclub.com", blob_sha, dns_data.to_yaml, branch: pr_gh[:head][:ref])
+    sorted_dns_data = sort_records dns_data
+    client.update_contents(REPO, FILE, "Update #{subdomain[:name]}.hackclub.com", blob_sha, sorted_dns_data.to_yaml, branch: pr_gh[:head][:ref])
   end
 
   def self.create_pr(content, message, subdomain_name)
@@ -84,7 +86,11 @@ class GithubService
       'type' => record_type,
       'value' => "#{value}."
     }
-    sorted_data = Hash[ content.sort_by { |key, val| key } ]
+    content
+  end
+
+  def self.sort_records(records)
+    sorted_data = Hash[ records.sort_by { |key, val| key } ]
   end
 
   # Format: YYYY-MM-DD_add_example_hackclub_com
