@@ -4,7 +4,7 @@ class SubdomainsController < ApplicationController
 
   def index
     @subdomains = current_user.admin? ? Subdomain.all : current_user.clubs.map{ |c| c.subdomains }.flatten
-    authorize @subdomains
+    authorize Subdomain
   end
 
   def show
