@@ -21,6 +21,19 @@ class Subdomain < ApplicationRecord
     "#{name}.hackclub.com"
   end
 
+  def status
+    pull_requests.active.each(&:update_github_status)
+    active_pr = pull_requests.order(:created_at).active.last
+
+    return :review if active_pr
+
+    outddated_record = dns_records.status.any(&:propigating?)
+
+    return :propigating if outddated_record
+
+    return :uptodate
+  end
+
   private
 
   def vacant_subdomain_name
