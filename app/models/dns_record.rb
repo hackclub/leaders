@@ -12,8 +12,8 @@ class DnsRecord < ApplicationRecord
   validates_presence_of :user_id, :value, :record_type
   validates_uniqueness_of :record_type, scope: [:subdomain, :deleted_at], if: -> { deleted_at.nil? }
 
-  validates :value, format: { with: Resolv::IPv4::Regex }, if: { type == :A }
-  validates :value, format: { with: Resolv::IPv6::Regex }, if: { type == :AAAA }
+  validates :value, format: { with: Resolv::IPv4::Regex }, if: -> { type == :A }
+  validates :value, format: { with: Resolv::IPv6::Regex }, if: -> { type == :AAAA }
 
   default_scope { where(deleted_at: nil) }
   scope :include_deleted, -> { unscope(:where) }
