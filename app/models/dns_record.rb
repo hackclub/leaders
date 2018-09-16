@@ -10,10 +10,10 @@ class DnsRecord < ApplicationRecord
   has_one :change_request
 
   validates_presence_of :user_id, :value, :record_type
-  validates_uniqueness_of :record_type, scope: [:subdomain, :deleted_at], if: -> { deleted_at.nil? }
+  validates_uniqueness_of :record_type, scope: :subdomain, conditions: -> { where(deleted_at: nil) }
 
-  validates :value, format: { with: Resolv::IPv4::Regex }, if: -> { type == :A }
-  validates :value, format: { with: Resolv::IPv6::Regex }, if: -> { type == :AAAA }
+  validates :value, format: { with: Resolv::IPv4::Regex, message: 'invalid IPv4 address' }, if: -> { record_type == 'A' }
+  validates :value, format: { with: Resolv::IPv6::Regex, message: 'invalid IPv6 address' }, if: -> { record_type == 'AAAA' }
 
   default_scope { where(deleted_at: nil) }
   scope :include_deleted, -> { unscope(:where) }
