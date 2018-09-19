@@ -283,31 +283,18 @@ td {
     padding-left: 0.75rem;
     padding-right: 0.75rem;
   }
-  &[class*='bg'] h2.heading {
+  &[class*='bg']:not(.bg-white) h2.heading {
     color: $white;
     border-bottom-color: rgba(255, 255, 255, 0.25);
   }
-
-  .badge {
-    background-color: $gray6;
-  }
-  &[class*='bg'] .badge {
-    background-color: rgba(255, 255, 255, 0.25);
+  &.bg-white .list li {
+    border-bottom-color: $gray2;
+    // border-bottom-color: rgba(255, 255, 255, 0.25);
   }
 
   p {
     margin-top: 0.75rem;
     margin-bottom: 0;
-  }
-
-  &.bg-primary .stat__label {
-    color: $red1;
-  }
-  &.bg-info .stat__label {
-    color: $blue1;
-  }
-  &.bg-accent .stat__label {
-    color: $indigo1;
   }
 
   .list {
@@ -322,6 +309,19 @@ td {
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
     }
+  }
+}
+
+.profiles {
+  /*
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
+  text-align: center;
+  */
+
+  img {
+    border-radius: 32px;
+    width: 64px;
   }
 }
 
@@ -398,21 +398,74 @@ td {
   z-index: 0;
 }
 
+.map-header {
+  position: relative;
+  overflow: hidden;
+  height: 12rem;
+  width: 100%;
+}
+.map-header__img {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: -1;
+  filter: blur(4px) saturate(0.5);
+  transform: scale(1.025);
+  object-fit: cover;
+  object-position: bottom;
+}
+.map-header__overlay {
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-position: center;
+  // background-color: #0cf;
+  // background-image: linear-gradient(to bottom, $blue1, $blue6);
+  // background-blend-mode: screen;
+  // opacity: 0.375;
+}
+.map-header__container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  padding: 1rem 0.5rem;
+}
+.map-header__heading {
+  text-align: center;
+  color: $white;
+  border-bottom: none;
+  font-size: 3rem;
+}
+@media screen and (min-width: 48em) {
+  .map-header {
+    display: block;
+    height: 18rem;
+  }
+  .map-header__container {
+    padding-top: 12rem;
+  }
+}
 .container {
   width: 100%;
   max-width: 64rem;
   margin: 1rem auto;
+
   padding: 0 1rem;
 }
-
 .flash {
   color: $white;
   font-weight: bold;
   padding: 0.75rem 1rem;
   border-radius: 4px;
+
   max-width: 24rem;
 }
-
 .breadcrumb {
   text-transform: uppercase;
   text-decoration: none;
@@ -425,7 +478,6 @@ td {
     margin-top: 0;
   }
 }
-
 .heading {
   display: flex;
   justify-content: center;
@@ -462,7 +514,6 @@ h3.heading {
     }
   }
 }
-
 $chevron: "url(<%= asset_url 'chevron.svg' %>) right 12px center no-repeat";
 .list {
   list-style: none;
@@ -481,18 +532,6 @@ $chevron: "url(<%= asset_url 'chevron.svg' %>) right 12px center no-repeat";
     display: flex;
     flex-direction: column;
     background: #{$chevron};
-    &.transaction--positive {
-      background: $teal0 #{$chevron};
-    }
-    &.transaction--negative {
-      background: $red0 #{$chevron};
-    }
-    &.transaction--neutral {
-      background: $gray0 #{$chevron};
-    }
-    &.transaction--warning {
-      background: $orange0 #{$chevron};
-    }
     &.ultrawhite {
       padding-right: 0;
     }
@@ -520,7 +559,7 @@ $chevron: "url(<%= asset_url 'chevron.svg' %>) right 12px center no-repeat";
   flex-direction: row;
 }
 .list--unlinked li {
-  background: white;
+  background: transparent;
   &.bg-snow {
     background: $gray0;
   }
@@ -532,7 +571,6 @@ h1 + .details {
 h3 + .list {
   border-top: 1px solid $gray2;
 }
-
 table {
   border-collapse: collapse;
   width: 100%;
@@ -553,7 +591,6 @@ th {
     padding-left: 0.75rem;
   }
 }
-
 .details {
   > p,
   > div {
@@ -562,18 +599,15 @@ th {
     padding-top: 1rem;
     padding-bottom: 1rem;
     margin: 0;
-
     @media (min-width: 32em) {
       grid-template-columns: 16rem auto;
       grid-gap: 0.5rem;
-
       strong {
         text-align: right;
       }
     }
   }
 }
-
 // Make mobile views nice. Full-bleed separator lines
 @media screen and (max-width: 32em) {
   table,
@@ -610,13 +644,11 @@ th {
     padding-right: 1rem;
   }
 }
-
 .card h1,
 .card h2 {
   margin-right: 0;
   width: 100%;
 }
-
 .card .list {
   &,
   > a > li,
@@ -624,7 +656,6 @@ th {
     margin-right: 2rem;
   }
 }
-
 .steps {
   counter-reset: li;
   list-style: none;
@@ -663,7 +694,6 @@ th {
     }
   }
 }
-
 @import 'basscss';
 @import 'space';
 @import 'utilities';

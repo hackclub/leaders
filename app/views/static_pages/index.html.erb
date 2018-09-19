@@ -1,7 +1,7 @@
 <main class="w-100 mx-auto center max-width-4 pt3">
   <h1 class="w-100">Welcome!</h1>
   <% if signed_in? %>
-    <% if @clubs.any? %>
+    <% if @clubs %>
       <ul class="list left-align w-100">
         <% @clubs.each do |club| %>
           <%= link_to club_path(club[:high_school_name].parameterize) do %>

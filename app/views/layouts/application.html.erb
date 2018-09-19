@@ -18,11 +18,12 @@
     <meta name="theme-color" content="#28ce68">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
-  <body>
+  <body class="<%= content_for :page_class %>">
     <%= link_to '🏡', root_path, class: 'home pt1 md-pt2 h1' %>
     <% if signed_in? %>
       <%= link_to 'logout', logout_users_path, method: :delete %>
     <% end %>
+    <%= content_for :header %>
     <main class="container">
       <% flash.each do |key, value| %>
         <article role="alertdialog" class="flash bg-<%= key %>">
