@@ -50,12 +50,9 @@ map_url(@club.high_school_latitude, @club.high_school_longitude),
   </div>
   <div class="club-summary__panel bg-white">
     <h2 class="heading">Subdomain</h2>
-    <% if @subdomains.where.not(id: nil).any? %>
-      <%= link_to "Show details about subdomains", subdomains_path %>
-    <% else %>
-      <%= link_to "Create a subdomain", new_subdomain_path, class: 'btn bg-success' %>
+    <% @subdomains.each do |subdomain| %>
+      <p><%= link_to subdomain.full_url, subdomain %></p>
     <% end %>
+    <%= link_to "Create a subdomain", new_subdomain_path, class: 'btn bg-success' %>
   </div>
 </section>
-
-<pre> <%= JSON.pretty_generate @club %> </pre>
