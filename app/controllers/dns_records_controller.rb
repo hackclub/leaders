@@ -16,7 +16,7 @@ class DnsRecordsController < ApplicationController
 
   def update
     if @dns_record.update(dns_record_params)
-      redirect_to @dns_record
+      redirect_to @dns_record.subdomain
     else
       render :edit
     end
@@ -33,7 +33,7 @@ class DnsRecordsController < ApplicationController
     authorize @dns_record
 
     if @dns_record.save
-      redirect_to dns_records_path
+      redirect_to @dns_record.subdomain
     else
       render :new
     end

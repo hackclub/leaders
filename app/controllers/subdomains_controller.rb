@@ -8,6 +8,7 @@ class SubdomainsController < ApplicationController
   end
 
   def show
+    @new_dns_record = DnsRecord.new(subdomain: @subdomain)
   end
 
   def new
@@ -29,7 +30,7 @@ class SubdomainsController < ApplicationController
 
   def update
     if @subdomain.update(subdomain_params)
-      redirect_to @subdomain.club
+      redirect_to @subdomain
     else
       render :edit
     end

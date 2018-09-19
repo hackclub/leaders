@@ -21,10 +21,14 @@
     <%= form.select :record_type, DnsRecord.record_types.keys, prompt: 'Select one' %>
   </div>
 
-  <div class="field">
-    <%= form.label :subdomain_id %>
-    <%= form.collection_select :subdomain_id, current_user.clubs.map{ |c| c.subdomains }.flatten, :id, :name, prompt: 'Select one' %>
-  </div>
+  <% if dns_record.subdomain_id.nil? %>
+    <div class="field">
+      <%= form.label :subdomain_id %>
+      <%= form.collection_select :subdomain_id, current_user.clubs.map{ |c| c.subdomains }.flatten, :id, :name, prompt: 'Select one' %>
+    </div>
+  <% else %>
+    <%= form.hidden_field :subdomain_id %>
+  <% end %>
 
   <div class="actions">
     <%= form.submit %>

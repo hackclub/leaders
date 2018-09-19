@@ -1,15 +1,16 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @subdomain.name %>
-</p>
+<h1>
+  Subdomain Overview
+</h1>
+<h2>
+  <%= @subdomain.full_url %>
+</h2>
 
-<p>
-  <strong>Club:</strong>
-  <%= @subdomain.club_id %>
-</p>
 
-<%= link_to 'Add rules', new_dns_record_path %> |
-<%= link_to 'Edit', edit_subdomain_path(@subdomain) %> |
-<%= link_to 'Back', subdomains_path %>
+<% @subdomain.dns_records.each do |dns_record| %>
+  <%= render 'dns_records/form', dns_record: dns_record %>
+<% end %>
+<%= render 'dns_records/form', dns_record: @new_dns_record %>
+
+<%= link_to @subdomain.club.name, @subdomain.club %>
