@@ -17,9 +17,8 @@ class ClubsController < ApplicationController
   def show
     @club = Club.find_by(slug: params[:slug])
     authorize @club
+    @subdomains = @club.subdomains
     @api_record ||= ApiService.get_club(@club.api_id, current_user.api_access_token)
     @club = OpenStruct.new @club.attributes.merge!(@api_record)
-    @subdomains = @club.subdomains
-    @subdomain = Subdomain.find_or_initialize_by(club_id: @club[:id])
   end
 end
