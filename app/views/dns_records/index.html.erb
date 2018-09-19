@@ -1,6 +1,7 @@
-<p id="notice"><%= notice %></p>
-
-<h1>DNS Records</h1>
+<h1 class="heading">
+  DNS Records
+  <%= link_to 'New DNS Record', new_dns_record_path, class: 'btn bg-success' %>
+</h1>
 
 <table>
   <thead>
@@ -8,7 +9,6 @@
       <th>Value</th>
       <th>Record type</th>
       <th>Subdomain</th>
-      <th>User</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -19,7 +19,6 @@
         <td><%= dns_record.value %></td>
         <td><%= dns_record.record_type %></td>
         <td><%= dns_record.subdomain_id %></td>
-        <td><%= dns_record.user_id %></td>
         <td><%= link_to 'Show', dns_record %></td>
         <td><%= link_to 'Edit', edit_dns_record_path(dns_record) %></td>
         <td><%= link_to 'Destroy', dns_record, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -27,7 +26,3 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New DNS Record', new_dns_record_path %>
