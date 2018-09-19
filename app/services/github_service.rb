@@ -66,7 +66,7 @@ class GithubService
 
   def self.subdomain_available?(name)
     used_subdomains = get_dns_records.keys
-    !used_subdomains.include? name
+    !used_subdomains.map(&:downcase).include? name.downcase
   end
 
   def self.client

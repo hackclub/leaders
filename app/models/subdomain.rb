@@ -1,6 +1,7 @@
 class Subdomain < ApplicationRecord
-  validates_uniqueness_of :name
+  validates_uniqueness_of :name, case_sensitive: false
   validates_presence_of :name
+  validates :name, format: { with: URI::DEFAULT_PARSER.regexp[:HOST] }
   validate :vacant_subdomain_name, if: :name_changed?
 
   has_many :dns_records

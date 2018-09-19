@@ -14,6 +14,7 @@ class DnsRecord < ApplicationRecord
 
   validates :value, format: { with: Resolv::IPv4::Regex, message: 'invalid IPv4 address' }, if: -> { record_type == 'A' }
   validates :value, format: { with: Resolv::IPv6::Regex, message: 'invalid IPv6 address' }, if: -> { record_type == 'AAAA' }
+  validates :value, format: { with: URI::DEFAULT_PARSER.regexp[:HOST], message: 'invalid hostname' }, if: -> { record_type == 'CNAME' }
 
   default_scope { where(deleted_at: nil) }
   scope :include_deleted, -> { unscope(:where) }
