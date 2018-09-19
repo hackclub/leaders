@@ -34,6 +34,10 @@ class ApiService
     req(:get, "/v1/new_leaders/#{leader_id}/new_clubs", nil, access_token)
   end
 
+  def self.get_club(club_id, access_token)
+    req(:get, "/v1/new_clubs/#{club_id}", nil, access_token)
+  end
+
   def self.update_clubs_for_user(user)
     clubs = get_clubs(user.leader[:id], user.api_access_token)
     ActiveRecord::Base.transaction do
