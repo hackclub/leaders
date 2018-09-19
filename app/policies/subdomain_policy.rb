@@ -4,18 +4,18 @@ class SubdomainPolicy < ApplicationPolicy
   end
 
   def show?
-    user.admin? || user.clubs.collect(&:subdomains).flatten.include?(record)
+    user.admin? || user.clubs.map(&:id).include?(record.club_id)
   end
 
   def edit?
-    user.admin? || user.clubs.collect(&:subdomains).flatten.include?(record)
+    user.admin? || user.clubs.map(&:id).include?(record.club_id)
   end
 
   def update?
-    user.admin? || user.clubs.collect(&:subdomains).flatten.include?(record)
+    user.admin? || user.clubs.map(&:id).include?(record.club_id)
   end
 
   def create?
-    user.admin? || user.clubs.collect(&:subdomains).flatten.include?(record)
+    user.admin? || user.clubs.map(&:id).include?(record.club_id)
   end
 end
