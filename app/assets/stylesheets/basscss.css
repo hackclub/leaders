@@ -37,7 +37,6 @@
 }
 .caps {
   text-transform: uppercase;
-  letter-spacing: 0.2em;
 }
 .left-align {
   text-align: left;
@@ -194,6 +193,11 @@
   -webkit-flex-wrap: wrap;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
+}
+.flex-nowrap {
+  -webkit-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
 }
 .items-start {
   -webkit-box-align: start;
