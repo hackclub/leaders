@@ -1,8 +1,9 @@
-<p id="notice"><%= notice %></p>
+<%= link_to @subdomain.club.name, @subdomain.club, class: 'breadcrumb' %>
 
 <h1>
-  Subdomain Overview
+  Subdomains
 </h1>
+
 <h2>
   <%= @subdomain.full_url %>
 </h2>
@@ -12,5 +13,3 @@
   <%= render 'dns_records/form', dns_record: dns_record %>
 <% end %>
 <%= render 'dns_records/form', dns_record: @new_dns_record %>
-
-<%= link_to @subdomain.club.name, @subdomain.club %>

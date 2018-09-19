@@ -1,5 +1,4 @@
+<%= link_to @club.name, @club, class: 'breadcrumb' if @club %>
 <h1>New Subdomain</h1>
 
 <%= render 'form', subdomain: @subdomain %>
-
-<%= link_to 'Back', subdomains_path %>
