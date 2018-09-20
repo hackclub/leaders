@@ -1,7 +1,7 @@
 <%= form_with(model: dns_record, local: true) do |form| %>
   <% if dns_record.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(dns_record.errors.count, "error") %> prohibited this dns_record from being saved:</h2>
+      <h2><%= pluralize(dns_record.errors.count, "error") %> prohibited this DNS record from being saved:</h2>
 
       <ul>
       <% dns_record.errors.full_messages.each do |message| %>
