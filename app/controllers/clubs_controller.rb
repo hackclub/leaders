@@ -19,6 +19,6 @@ class ClubsController < ApplicationController
     authorize @club
     @subdomains = @club.subdomains
     @api_record ||= ApiService.get_club(@club.api_id, current_user.api_access_token)
-    @club = OpenStruct.new @club.attributes.merge!(@api_record)
+    @club = OpenStruct.new @club.attributes.reverse_merge!(@api_record)
   end
 end
