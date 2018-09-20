@@ -54,8 +54,19 @@ class Subdomain < ApplicationRecord
   private
 
   def vacant_subdomain_name
-    return if GithubService.subdomain_available? name
-    errors.add(:name, 'already taken')
+    errors.add(:name, 'is protected') if protected_subdomains.include?(name)
+    errors.add(:name, 'already taken') if GithubService.subdomain_taken?(name)
+  end
+
+  def protected_subdomains
+    # This is all from https://github.com/hackclub/proxy
+    %w{
+      admin blog board camp-sheet chicagohacks clubs conduct deals demo-night
+      design donate dropbox exit-interview feedback-redir feedback find finder
+      free-tech-domain gh guide hack-camp-playbook idyllwild india internships
+      irc orbit partytime proxyparty schedule-interview schedule-orientation
+      series shipit shipped slack subscribe wildcard workshops www
+    }
   end
 
   def create_pr
