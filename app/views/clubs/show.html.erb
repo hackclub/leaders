@@ -24,7 +24,7 @@
   <div class="club-summary__panel">
     <h2 class="pl2 pr2">
       Leaders
-      <%= badge_for @club.new_leaders.count, class: 'bg-white info' %>
+      <%= badge_for @club.api_record['new_leaders'].count, class: 'bg-white info' %>
     </h2>
     <ul class="list list--row list--unlinked">
       <% @club.api_record['new_leaders'].each do |leader| %>
@@ -35,7 +35,7 @@
       <% end %>
     </ul>
     <% if @club.leadership_position_invites.any? %>
-      <div class="muted pl2 pt1 pb1">+<%= @club.leadership_position_invites.count %> invited</div>
+      <div class="muted pl2 pt1 pb1">+<%= @club.api_record['leadership_position_invites'].count %> invited</div>
     <% end %>
   </div>
   <div class="club-summary__panel">
