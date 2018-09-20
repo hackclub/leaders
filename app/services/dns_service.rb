@@ -4,12 +4,12 @@ class DnsService
     resources = Resolv::DNS.new.getresources(host, resolv_resource)
     resources.any? do |resource|
       case type
-      when :A
-      when :AAAA
+      when 'A'
+      when 'AAAA'
         resource.address.to_s == expected_result
-      when :CNAME
+      when 'CNAME'
         resource.name.to_s == expected_result
-      when :TXT
+      when 'TXT'
         resource.strings.include? expected_result
       end
     end
