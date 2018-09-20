@@ -29,7 +29,9 @@
     <ul class="list list--row list--unlinked">
       <% @club.api_record['new_leaders'].each do |leader| %>
         <li class="flex items-center">
-          <%= gravatar_for leader['email'], 96, alt: leader['name'], width: 48, class: 'circle' %>
+          <% if leader['email'] %>
+            <%= gravatar_for leader['email'], 96, alt: leader['name'], width: 48, class: 'circle' %>
+          <% end %>
           <span class="bold ml2"><%= leader['name'] %></span>
         </li>
       <% end %>
