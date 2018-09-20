@@ -41,7 +41,7 @@
   <div class="club-summary__panel">
     <h2 class="heading">
       Subdomains
-      <%= link_to "New subdomain", new_subdomain_path, class: 'btn bg-success' %>
+      <%= link_to "New subdomain", new_subdomain_path(club_id: @club.api_id), class: 'btn bg-success' %>
     </h2>
     <ul class="list">
       <% @subdomains.each do |subdomain| %>

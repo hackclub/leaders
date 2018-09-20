@@ -34,7 +34,7 @@ body {
   display: flex;
   flex-direction: column;
   font-size: 16px;
-  font-family: Averta, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     sans-serif;
   line-height: 1.5;
   position: relative;
@@ -79,7 +79,7 @@ textarea {
   padding-bottom: 4px;
   width: 100%;
   color: inherit;
-  background: rgba($gray5, 0.25) !important;
+  background-color: rgba($gray5, 0.25) !important;
   border-radius: 6px;
   border: none;
   transition: box-shadow 0.125s ease-out;
@@ -118,7 +118,7 @@ a {
   margin-bottom: 0.75rem;
 }
 .actions {
-  margin-top: 1.5rem;
+  margin-top: 1rem;
 }
 
 .flex.w-100 .field {
@@ -432,21 +432,12 @@ td {
   border-bottom: none;
   font-size: 3rem;
 }
-@media screen and (min-width: 48em) {
-  .map-header {
-    display: block;
-    height: 18rem;
-  }
-  .map-header__container {
-    padding-top: 12rem;
-  }
-}
 .container {
   width: 100%;
   max-width: 64rem;
   margin: 1rem auto;
 
-  padding: 0 1rem;
+  padding: 1rem;
 }
 .flash {
   color: $white;
