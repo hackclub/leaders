@@ -28,7 +28,7 @@ class Subdomain < ApplicationRecord
 
     return :under_review if active_pr
 
-    outddated_record = dns_records.status.any(&:offline?)
+    outddated_record = dns_records.any?(&:offline?)
 
     return :propigating if outddated_record
 
