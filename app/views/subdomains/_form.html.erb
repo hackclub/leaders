@@ -20,8 +20,9 @@
     <span class="h3 ml1" style="line-height: 2;">.hackclub.com</span>
   </div>
 
-  <% if params[:club_id] %>
-    <%= form.hidden_field :club_id, value: params[:club_id] %>
+  <!-- Only show the club dropdown if the user is in a weird state where the subdomain isn't attached to a specific club -->
+  <% if params[:club_id] || subdomain.club_id %>
+    <%= form.hidden_field :club_id, value: params[:club_id] || subdomain.club_id %>
   <% else %>
   <div class="field">
     <%= form.label :club_id %>
