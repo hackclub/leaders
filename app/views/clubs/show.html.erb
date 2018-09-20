@@ -1,40 +1,30 @@
-<% content_for :page_class do %>bg-snow<% end %>
+<style>
+  .link--logout { color: #fff !important; opacity: .75; text-decoration: none; text-align: center; }
+</style>
 
-<% content_for :header do %>
-<header class="map-header">
-  <%# image_tag
-map_url(@club.high_school_latitude, @club.high_school_longitude),
-      class: 'map-header__img',
-      alt: "map of club in #{@club.high_school_parsed_city}" %>
-  <div class="map-header__overlay" style="
-    background-image:
-      linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,.5)),
-      url(<%= map_url(@club.high_school_latitude, @club.high_school_longitude) %>);
-    "></div>
-  <div class="map-header__container">
-    <h1 class="map-header__heading"><%= @club.high_school_name %></h1>
-  </div>
-</header>
-<% end %>
+<img src="<%= map_url(@club.high_school_latitude, @club.high_school_longitude) %>" class="map-header__img">
+<h1 class="club-heading mt3 lg-mt4"><%= @club.high_school_name %></h1>
 
-<section class="club-summary mt2 mb2 md-mt3 md-mb3">
-  <div class="club-summary__panel bg-white">
-    <h2 class="heading">
+<section class="club-summary mt2 mb2 lg-mt3 lg-mb3">
+  <div class="club-summary__panel">
+    <h2>
       Club Details
     </h2>
-    <p>
-      <strong>Started:</strong> <%= @club.created_at.to_date.strftime('%B %Y') %><br />
-      <strong>School:</strong> <%= @club.high_school_name %><br />
-      <strong>Address:</strong> <%= @club.high_school_address %><br />
-      <% if @club.club_website %>
-      <strong>Website:</strong> <%= clean_autolink @club.club_website %>
-      <% end %>
-    </p>
+    <article>
+      <p>
+        <strong>Started:</strong> <%= @club.created_at.to_date.strftime('%B %Y') %><br />
+        <strong>School:</strong> <%= @club.high_school_name %><br />
+        <strong>Address:</strong> <%= @club.high_school_address %><br />
+        <% if @club.club_website %>
+        <strong>Website:</strong> <%= clean_autolink @club.club_website %>
+        <% end %>
+      </p>
+    </article>
   </div>
-  <div class="club-summary__panel bg-white pl0 pr0 pb0 pt2">
-    <h2 class="heading" style="margin:0;">
+  <div class="club-summary__panel">
+    <h2 class="pl2 pr2">
       Leaders
-      <%= badge_for @club.new_leaders.count, class: 'bg-info' %>
+      <%= badge_for @club.new_leaders.count, class: 'bg-white info' %>
     </h2>
     <ul class="list list--row list--unlinked">
       <% @club.new_leaders.each do |leader| %>
@@ -48,11 +38,15 @@ map_url(@club.high_school_latitude, @club.high_school_longitude),
       <div class="muted pl2 pt1 pb1">+<%= @club.leadership_position_invites.count %> invited</div>
     <% end %>
   </div>
-  <div class="club-summary__panel bg-white">
-    <h2 class="heading">Subdomain</h2>
-    <% @subdomains.each do |subdomain| %>
-      <p><%= link_to subdomain.full_url, subdomain %></p>
-    <% end %>
-    <%= link_to "Create a subdomain", new_subdomain_path, class: 'btn bg-success' %>
+  <div class="club-summary__panel">
+    <h2 class="heading">
+      Subdomains
+      <%= link_to "New subdomain", new_subdomain_path(club_id: @club.api_id), class: 'btn bg-success' %>
+    </h2>
+    <ul class="list">
+      <% @subdomains.each do |subdomain| %>
+        <li><%= link_to subdomain.full_url, subdomain %></li>
+      <% end %>
+    </ul>
   </div>
 </section>

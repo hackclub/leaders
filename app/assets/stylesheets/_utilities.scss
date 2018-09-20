@@ -53,15 +53,15 @@ $__palette: (
 
 @each $name, $val in $__palette {
   .#{$name} {
-    color: $val;
+    color: $val !important;
   }
 
   .bg-#{$name} {
-    background-color: $val;
+    background-color: $val !important;
   }
 
   .b--#{$name} {
-    border-color: $val;
+    border-color: $val !important;
   }
 }
 

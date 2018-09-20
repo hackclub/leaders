@@ -11,17 +11,24 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="flex items-end max-width-1 mb2">
+    <div class="field flex-auto mb0">
+      <%= form.label :name %>
+      <%= form.text_field :name %>
+    </div>
+    <span class="h3 ml1">.hackclub.com</span>
   </div>
 
+  <% if params[:club_id] %>
+    <%= form.hidden_field :club_id, value: params[:club_id] %>
+  <% else %>
   <div class="field">
     <%= form.label :club_id %>
     <%= form.collection_select :club_id, current_user.clubs, :id, :name, prompt: 'Select one' %>
   </div>
+  <% end %>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit (subdomain.persisted? ? 'Rename' : 'Register') %>
   </div>
 <% end %>

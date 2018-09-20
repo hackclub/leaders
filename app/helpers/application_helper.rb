@@ -22,4 +22,18 @@ module ApplicationHelper
   def clean_autolink(text)
     link_to remove_url_head(text), text, target: '_blank', style: 'color: inherit'
   end
+
+  def inline_svg(filename, options = {})
+    file = File.read(Rails.root.join('app', 'assets', 'images', 'icons', filename))
+    doc = Nokogiri::HTML::DocumentFragment.parse file
+    svg = doc.at_css 'svg'
+    options[:style] ||= ''
+    if options[:size]
+      options[:width] = options[:size]
+      options[:height] = options[:size]
+      options.delete :size
+    end
+    options.each { |key, value| svg[key.to_s] = value }
+    doc.to_html.html_safe
+  end
 end

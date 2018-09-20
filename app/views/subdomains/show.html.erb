@@ -1,16 +1,21 @@
-<p id="notice"><%= notice %></p>
+<%= link_to @subdomain.club.name, @subdomain.club, class: 'breadcrumb' %>
 
-<h1>
-  Subdomain Overview
+<h1 class="heading break-word">
+  <span>Subdomain: <span class="h1 muted"><%= @subdomain.full_url %></span></span>
+  <%= link_to 'Edit', edit_subdomain_path(@subdomain), class: 'btn bg-info' %>
 </h1>
+
 <h2>
-  <%= @subdomain.full_url %>
+  DNS Records
 </h2>
 
+<section class="shade-green p2 rounded max-width-3 my3 mxn2">
+  <h3 class="caps mt0 mb1">New DNS record</h2>
+  <%= render 'dns_records/form', dns_record: @new_dns_record %>
+</section>
 
 <% @subdomain.dns_records.each do |dns_record| %>
-  <%= render 'dns_records/form', dns_record: dns_record %>
+  <section class="shade-blue p2 rounded max-width-3 my3 mxn2">
+    <%= render 'dns_records/form', dns_record: dns_record %>
+  </section>
 <% end %>
-<%= render 'dns_records/form', dns_record: @new_dns_record %>
-
-<%= link_to @subdomain.club.name, @subdomain.club %>
