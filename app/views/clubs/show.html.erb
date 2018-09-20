@@ -34,7 +34,7 @@
         </li>
       <% end %>
     </ul>
-    <% if @club.leadership_position_invites.any? %>
+    <% if @club.leadership_position_invites %>
       <div class="muted pl2 pt1 pb1">+<%= @club.api_record['leadership_position_invites'].count %> invited</div>
     <% end %>
   </div>
