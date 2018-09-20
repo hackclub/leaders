@@ -8,8 +8,11 @@
   <%= @subdomain.full_url %>
 </h2>
 
+<section class="shade-green p2 rounded max-width-3">
+  <h3 class="caps mt0 mb2">Add a DNS record</h2>
+  <%= render 'dns_records/form', dns_record: @new_dns_record %>
+</section>
 
 <% @subdomain.dns_records.each do |dns_record| %>
   <%= render 'dns_records/form', dns_record: dns_record %>
 <% end %>
-<%= render 'dns_records/form', dns_record: @new_dns_record %>
