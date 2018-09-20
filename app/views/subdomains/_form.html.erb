@@ -14,9 +14,10 @@
   <div class="flex items-end max-width-1 mb2">
     <div class="field flex-auto mb0">
       <%= form.label :name %>
-      <%= form.text_field :name %>
+      <%= form.text_field :name,
+        value: subdomain.name.blank? ? placeholder_subdomain(@club.api_record['high_school_name']) : subdomain.name, class: 'right-align' %>
     </div>
-    <span class="h3 ml1">.hackclub.com</span>
+    <span class="h3 ml1" style="line-height: 2;">.hackclub.com</span>
   </div>
 
   <% if params[:club_id] %>

@@ -1,6 +1,5 @@
+<%= link_to @subdomain.club.api_record['high_school_name'], @subdomain.club, class: 'breadcrumb' %>
+<%= link_to "#{@subdomain.name}.hackclub.com", @subdomain, class: 'breadcrumb' %>
 <h1>Editing Subdomain</h1>
 
 <%= render 'form', subdomain: @subdomain %>
-
-<%= link_to 'Show', @subdomain %> |
-<%= link_to 'Back', subdomains_path %>

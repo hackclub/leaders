@@ -1,8 +1,12 @@
 <%= link_to @subdomain.club.name, @subdomain.club, class: 'breadcrumb' %>
 
 <h1 class="heading break-word">
-  <span>Subdomain: <span class="h1 muted"><%= @subdomain.full_url %></span></span>
-  <%= link_to 'Edit', edit_subdomain_path(@subdomain), class: 'btn bg-info' %>
+  <span>
+    Subdomain:
+    <span class="h1 muted"><%= @subdomain.full_url %></span>
+    <%= badge_for @subdomain.status_description, class: "bg-#{@subdomain.status_type} h4 ml0" %>
+  </span>
+  <%= link_to 'Edit', edit_subdomain_path(@subdomain), class: 'btn bg-ino' %>
 </h1>
 
 <h2>

@@ -26,13 +26,29 @@ class Subdomain < ApplicationRecord
     pull_requests.active.each(&:update_github_status)
     active_pr = pull_requests.order(:created_at).active.last
 
-    return :review if active_pr
+    return :under_review if active_pr
 
-    outddated_record = dns_records.status.any(&:propigating?)
+    outddated_record = dns_records.status.any(&:offline?)
 
     return :propigating if outddated_record
 
-    return :uptodate
+    return :success
+  end
+
+  def status_type
+    case status
+    when :under_review then :pending
+    when :propigating then :info
+    when :success then :success
+    end
+  end
+
+  def status_description
+    case status
+    when :under_review then 'Under review'
+    when :propigating then 'Propigating – this may take a few hours'
+    when :success then 'Online!'
+    end
   end
 
   private

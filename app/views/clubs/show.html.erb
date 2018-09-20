@@ -43,10 +43,22 @@
       Subdomains
       <%= link_to "New subdomain", new_subdomain_path(club_id: @club.api_id), class: 'btn bg-success' %>
     </h2>
-    <ul class="list">
-      <% @subdomains.each do |subdomain| %>
-        <li><%= link_to subdomain.full_url, subdomain %></li>
-      <% end %>
-    </ul>
+    <% if @subdomains %>
+      <ul class="list list--row">
+        <% @subdomains.each do |subdomain| %>
+          <li class="items-center">
+            <%= status_badge subdomain.status_type %>
+            <%= link_to subdomain.full_url, subdomain %>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <article>
+        <p class="break-word">
+          No subdomains yet.<br />
+          <span class="underline"><%= placeholder_subdomain @club.high_school_name %>.hackclub.com</span> could be yours!
+        </p>
+      </article>
+    <% end %>
   </div>
 </section>

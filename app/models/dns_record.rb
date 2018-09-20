@@ -20,16 +20,23 @@ class DnsRecord < ApplicationRecord
   scope :include_deleted, -> { unscope(:where) }
 
   def status
-    online = DnsService.check(type, subdomain.full_url, value)
-    online ? :uptodate : :propigating
+    online = DnsService.check(record_type, subdomain.full_url, value)
+    online ? :online : :offline
   end
 
-  def propigating?
-    status == :propigating
+  def status_type
+    case status
+    when :online then :success
+    when :offline then :muted
+    end
   end
 
-  def uptodate?
-    status == :uptodate
+  def online?
+    status == :online
+  end
+
+  def offline?
+    status == :offline
   end
 
   after_save do |dns_record|

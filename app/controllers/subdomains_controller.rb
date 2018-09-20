@@ -9,6 +9,7 @@ class SubdomainsController < ApplicationController
 
   def show
     @new_dns_record = DnsRecord.new(subdomain: @subdomain)
+    @status = @subdomain.status
   end
 
   def new
