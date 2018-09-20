@@ -1,22 +1,18 @@
 @import 'variables';
 
 @font-face {
-  font-family: Averta;
+  font-family: 'Phantom Sans';
+  src: url('https://hackclub.com/fonts/Phantom_0.4-Regular.woff') format('woff'),
+    url('https://hackclub.com/fonts/Phantom_0.4-Regular.woff2') format('woff2');
+  font-weight: normal;
   font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(//hackclub.com/fonts/averta-regular.woff2) format('woff2'),
-    url(//hackclub.com/fonts/averta-regular.woff) format('woff');
-  unicode-range: U + 0000 - F8FE, U + F900-FFFF;
 }
 @font-face {
-  font-family: Averta;
+  font-family: 'Phantom Sans';
+  src: url('https://hackclub.com/fonts/Phantom_0.4-Bold.woff') format('woff'),
+    url('https://hackclub.com/fonts/Phantom_0.4-Bold.woff2') format('woff2');
+  font-weight: bold;
   font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url(//hackclub.com/fonts/averta-bold.woff2) format('woff2'),
-    url(//hackclub.com/fonts/averta-bold.woff) format('woff');
-  unicode-range: U + 0000 - F8FE, U + F900-FFFF;
 }
 
 * {
@@ -42,6 +38,15 @@ body {
   -webkit-font-smoothing: antialiased;
   color: $black;
   margin: 0;
+}
+
+h1,
+h2,
+h3,
+.btn,
+input[type='submit'] {
+  font-family: 'Phantom Sans', system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, sans-serif;
 }
 
 a {
@@ -250,20 +255,10 @@ p + p {
   margin-top: 0;
 }
 
-.home {
-  position: absolute;
-  top: 0;
-  left: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  text-decoration: none;
-}
-
 th {
   text-align: left;
   font-weight: bold;
 }
-
 td {
   padding-left: 0;
 }
@@ -331,17 +326,9 @@ td {
   }
 }
 
-.profiles {
-  /*
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
-  text-align: center;
-  */
-
-  img {
-    border-radius: 32px;
-    width: 64px;
-  }
+.profiles img {
+  border-radius: 32px;
+  width: 64px;
 }
 
 .stat {
@@ -418,6 +405,7 @@ td {
 }
 
 .map-header__img {
+  background: $gray7;
   position: fixed;
   left: 0;
   top: 0;
@@ -428,12 +416,14 @@ td {
   object-fit: cover;
   object-position: center;
 }
+
 .club-heading {
   text-align: center;
   color: $white;
   border-bottom: none;
   font-size: 3rem;
 }
+
 .container {
   width: 100%;
   max-width: 64rem;
@@ -441,14 +431,15 @@ td {
 
   padding: 1rem;
 }
+
 .flash {
   color: $white;
   font-weight: bold;
   padding: 0.75rem 1rem;
   border-radius: 4px;
-
   max-width: 24rem;
 }
+
 .breadcrumb {
   text-transform: uppercase;
   text-decoration: none;
