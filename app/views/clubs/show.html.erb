@@ -43,12 +43,12 @@
       Subdomains
       <%= link_to "New subdomain", new_subdomain_path(club_id: @club.id), class: 'btn bg-success' %>
     </h2>
-    <% if @subdomains %>
+    <% if @subdomains.any? %>
       <ul class="list list--row">
         <% @subdomains.each do |subdomain| %>
           <li class="items-center">
             <%= status_badge subdomain.status_type %>
-            <%= link_to subdomain.full_url, subdomain %>
+            <%= link_to subdomain.full_url, subdomain %
           </li>
         <% end %>
       </ul>
