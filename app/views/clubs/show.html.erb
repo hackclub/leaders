@@ -48,7 +48,7 @@
         <% @subdomains.each do |subdomain| %>
           <li class="items-center">
             <%= status_badge subdomain.status_type %>
-            <%= link_to subdomain.full_url, subdomain %
+            <%= link_to subdomain.full_url, subdomain %>
           </li>
         <% end %>
       </ul>
