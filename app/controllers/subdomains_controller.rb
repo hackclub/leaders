@@ -13,7 +13,7 @@ class SubdomainsController < ApplicationController
   end
 
   def new
-    @club = Club.find_by(api_id: params[:club_id]) if params[:club_id]
+    @club = Club.find(params[:club_id]) if params[:club_id]
     @subdomain = Subdomain.new
   end
 
