@@ -1,6 +1,6 @@
 module ClubsHelper
   def placeholder_subdomain(name)
-    name.to_s.downcase.remove(' ').remove('hackclub').remove('high').remove('school')
+    name.to_s.downcase.remove(' ').remove(/\W+/).remove('hackclub').remove('high').remove('school')
   end
 
   def map_url(lat, lng, options = {})
