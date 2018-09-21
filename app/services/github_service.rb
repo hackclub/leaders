@@ -64,9 +64,9 @@ class GithubService
     pull_request = client.create_pull_request(REPO, "master", new_branch_name, message)
   end
 
-  def self.subdomain_available?(name)
+  def self.subdomain_taken?(name)
     used_subdomains = get_dns_records.keys
-    !used_subdomains.map(&:downcase).include? name.downcase
+    used_subdomains.map(&:downcase).include? name.downcase
   end
 
   def self.client
