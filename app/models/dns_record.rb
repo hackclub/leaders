@@ -40,6 +40,7 @@ class DnsRecord < ApplicationRecord
   end
 
   after_save do |dns_record|
+    return unless dns_record.changes.any?
     # Get the branch's open PR or create a new one
     subdomain.pull_requests.active.each(&:update_github_status)
     active_pr = subdomain.pull_requests.order(:created_at).active.last
