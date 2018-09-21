@@ -14,7 +14,8 @@ class SubdomainsController < ApplicationController
 
   def new
     @club = Club.find(params[:club_id]) if params[:club_id]
-    @subdomain = Subdomain.new
+    @subdomain = Subdomain.new(club: @club)
+    authorize @subdomain
   end
 
   def create
