@@ -28,9 +28,9 @@ class Subdomain < ApplicationRecord
 
     return :under_review if active_pr
 
-    outddated_record = dns_records.any?(&:offline?)
+    outdated_record = dns_records.any?(&:offline?)
 
-    return :propigating if outddated_record
+    return :propagating if outdated_record
 
     return :success
   end
@@ -38,7 +38,7 @@ class Subdomain < ApplicationRecord
   def status_type
     case status
     when :under_review then :pending
-    when :propigating then :info
+    when :propagating then :info
     when :success then :success
     end
   end
@@ -46,7 +46,7 @@ class Subdomain < ApplicationRecord
   def status_description
     case status
     when :under_review then 'Under review'
-    when :propigating then 'Propigating – this may take a few hours'
+    when :propagating then 'propagating – this may take a few hours'
     when :success then 'Online!'
     end
   end
