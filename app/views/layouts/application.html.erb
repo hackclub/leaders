@@ -7,15 +7,21 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <!--
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#28ce68">
-    -->
-    <meta property="twitter:image" content="https://leaders.hackclub.com<%= image_path("social-photo.jpg") %>">
+    <meta name="description" content="Host your club website on a hackclub.com subdomain.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@hackclub">
+    <meta name="twitter:domain" content="https://leaders.hackclub.com/">
+    <meta name="twitter:title" content="Hack Club Leaders">
+    <meta name="twitter:description" content="Host your club website on a hackclub.com subdomain.">
+    <meta name="twitter:image" content="https://leaders.hackclub.com<%= image_path("social-photo.jpg") %>">
+    <meta property="og:site_name" content="Hack Club Leaders">
+    <meta property="og:title" content="Hack Club Leaders">
+    <meta property="og:description" content="Host your club website on a hackclub.com subdomain.">
     <meta property="og:image" content="https://leaders.hackclub.com<%= image_path("social-photo.jpg") %>">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://leaders.hackclub.com/">
+    <%= favicon_link_tag asset_path('favicon.ico'), rel: 'icon', type: "image/x-icon" %>
     <meta name="msapplication-TileColor" content="#da28ce">
     <meta name="theme-color" content="#28ce68">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
