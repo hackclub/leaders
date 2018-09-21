@@ -46,7 +46,7 @@ class Subdomain < ApplicationRecord
   def status_description
     case status
     when :under_review then 'Under review'
-    when :propagating then 'propagating – this may take a few hours'
+    when :propagating then 'Propagating (may take a few hours)'
     when :success then 'Online!'
     end
   end
