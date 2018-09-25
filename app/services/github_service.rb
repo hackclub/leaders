@@ -84,7 +84,7 @@ class GithubService
     content[subdomain[:name]] << {
       'ttl' => 1,
       'type' => record_type,
-      'value' => "#{value}."
+      'value' => record_type == "CNAME" ? "#{value}." : value
     }
     content
   end
