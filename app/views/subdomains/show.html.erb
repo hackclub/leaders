@@ -13,6 +13,8 @@
   DNS Records
 </h2>
 
+<p>You can edit the DNS records for <%= @subdomain.full_url %> below. To set up your site you'll also have to configure your site's host (ex. <a href="https://help.github.com/articles/using-a-custom-domain-with-github-pages/">Github Pages</a> or <a href="https://www.netlify.com/docs/custom-domains/">Netlify</a>).</p>
+
 <section class="shade-green p2 rounded max-width-3 my3 mxn2">
   <h3 class="caps mt0 mb1">New DNS record</h2>
   <%= render 'dns_records/form', dns_record: @new_dns_record %>
