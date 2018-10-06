@@ -51,6 +51,17 @@ class Subdomain < ApplicationRecord
     end
   end
 
+  def create_pr
+    pull_requests.active.each(&:update_github_status)
+    active_pr = pull_requests.order(:created_at).active.last
+
+    if active_pr
+      active_pr.update_github_changes(self)
+    else
+      PullRequest.create!(subdomain: self)
+    end
+  end
+
   private
 
   def vacant_subdomain_name
@@ -67,16 +78,5 @@ class Subdomain < ApplicationRecord
       irc orbit partytime proxyparty schedule-interview schedule-orientation
       series shipit shipped slack subscribe wildcard workshops www
     }
-  end
-
-  def create_pr
-    pull_requests.active.each(&:update_github_status)
-    active_pr = pull_requests.order(:created_at).active.last
-
-    if active_pr
-      active_pr.update_github_changes(self)
-    else
-      PullRequest.create!(subdomain: self)
-    end
   end
 end

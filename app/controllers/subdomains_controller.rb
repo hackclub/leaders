@@ -1,6 +1,6 @@
 class SubdomainsController < ApplicationController
   before_action :signed_in_user
-  before_action :set_subdomain, only: [:edit, :update, :show]
+  before_action :set_subdomain, only: [:edit, :update, :show, :destroy]
 
   def index
     @subdomains = current_user.admin? ? Subdomain.all : current_user.clubs.map{ |c| c.subdomains }.flatten
@@ -36,6 +36,17 @@ class SubdomainsController < ApplicationController
       redirect_to @subdomain
     else
       render :edit
+    end
+  end
+
+  def destroy
+    club = @subdomain.club
+    @subdomain.dns_records.destroy_all
+    @subdomain.create_pr
+    if @subdomain.destroy
+      redirect_to club
+    else
+      render :show
     end
   end
 
