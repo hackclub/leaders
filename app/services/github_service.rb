@@ -39,6 +39,8 @@ class GithubService
       dns_data.delete old_name
     end
 
+    dns_data.delete subdomain.name
+
     if subdomain.dns_records.any?
       dns_data[subdomain[:name]] = []
       subdomain.dns_records.each do |dns_record|

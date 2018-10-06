@@ -18,4 +18,8 @@ class SubdomainPolicy < ApplicationPolicy
   def create?
     user.admin? || user.clubs.map(&:id).include?(record.club_id)
   end
+
+  def destroy?
+    user.admin? || user.clubs.map(&:id).include?(record.club_id)
+  end
 end

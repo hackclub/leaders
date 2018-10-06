@@ -50,6 +50,7 @@
           <li class="items-center">
             <%= status_badge subdomain.status_type %>
             <%= link_to subdomain.full_url, subdomain %>
+            <%= link_to 'delete', subdomain_path(subdomain), class: 'ml1 error', method: :delete, data: { confirm: 'Are you sure?' } %>
           </li>
         <% end %>
       </ul>
