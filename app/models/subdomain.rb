@@ -4,6 +4,9 @@ class Subdomain < ApplicationRecord
   validates :name, format: { with: URI::DEFAULT_PARSER.regexp[:HOST] }
   validate :vacant_subdomain_name, if: :name_changed?
 
+  default_scope { where(deleted_at: nil) }
+  scope :include_deleted, -> { unscope(:where) }
+
   has_many :dns_records
   has_many :pull_requests
   belongs_to :club
