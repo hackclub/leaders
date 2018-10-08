@@ -1,6 +1,8 @@
 class ApiService
   BASE_URL = 'https://api.hackclub.com'
 
+  class AuthorizationInvalid < StandardError; end
+
   def self.req(method, path, params, access_token=nil)
     conn = Faraday.new(url: BASE_URL)
 
@@ -14,6 +16,8 @@ class ApiService
 
       req.body = params.to_json
     end
+
+    raise AuthorizationInvalid if resp.status == 401
 
     JSON.parse(resp.body, symbolize_names: true)
   end
