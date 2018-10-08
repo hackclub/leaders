@@ -42,6 +42,7 @@ class SubdomainsController < ApplicationController
   def destroy
     club = @subdomain.club
     @subdomain.dns_records.update_all(deleted_at: Time.now)
+    @subdomain.create_pr
     if @subdomain.update(deleted_at: Time.now)
       redirect_to club
     else
