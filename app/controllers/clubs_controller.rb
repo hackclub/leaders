@@ -20,5 +20,6 @@ class ClubsController < ApplicationController
     @api_record ||= ApiService.get_club(@club.api_id, current_user.api_access_token)
     @subdomains = @club.subdomains
     @club = OpenStruct.new @club.attributes.reverse_merge!(@api_record)
+    @email_on_check_in = current_user.email_on_check_in
   end
 end

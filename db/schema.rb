@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_08_010852) do
+ActiveRecord::Schema.define(version: 2018_11_09_011209) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 2018_10_08_010852) do
     t.text "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "email_on_check_in"
     t.index ["api_access_token"], name: "index_users_on_api_access_token", unique: true
     t.index ["api_id"], name: "index_users_on_api_id", unique: true
   end
