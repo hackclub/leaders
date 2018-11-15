@@ -1,15 +1,13 @@
-<div style="background-color: #fdc2c8; padding: 15px;">
-  <strong><a href="https://goo.gl/forms/tSnCGSvn8BvHh3Mi1">Check-in</a></strong>
-</div>
-<div style="margin-left: 15px; margin-right: 15px;">
-  <p>
-    Your club's check-in is open for the week. Fill it out
-    <a href="https://goo.gl/forms/tSnCGSvn8BvHh3Mi1">here</a>.
-  </p>
-  <hr>
-  <p>
-    You are receiving this email because you opted-in to weekly check-ins.
-    You can turn this off by opting-out in your <a
-    href="https://leaders.hackclub.com">leader dashboard</a>.
-  </p>
-</div>
+<a href="https://goo.gl/forms/tSnCGSvn8BvHh3Mi1">
+  <h1>Your club check-in link for <%= Date.today.to_s %></h1>
+</a>
+<p>
+  Your club’s check-in is open for the weekend. Fill out the questions about last week’s meeting <strong>before Monday</strong>.
+</p>
+<strong><a href="https://goo.gl/forms/tSnCGSvn8BvHh3Mi1">Check-in for <%= Date.today.to_s %></a></strong>
+<hr>
+<p><em>
+  You are receiving this email because you opted-in to weekly check-ins. You
+  can turn this off by opting-out in your <a
+  href="https://leaders.hackclub.com">leader dashboard</a>.
+</em></p>
