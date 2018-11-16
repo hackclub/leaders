@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [] do
     collection do
-      get 'auth', to: 'users#auth'
+      get 'auth', to: 'users#auth', as: :sign_in
       post 'login_code', to: 'users#login_code'
       post 'exchange_login_code', to: 'users#exchange_login_code'
       delete 'logout', to: 'users#logout'
