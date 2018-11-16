@@ -36,4 +36,14 @@ module ApplicationHelper
     options.each { |key, value| svg[key.to_s] = value }
     doc.to_html.html_safe
   end
+
+  def nav_active?(nav)
+    @navs ||= []
+    @navs.include?(nav.to_sym)
+  end
+
+  def activate_nav!(nav)
+    @navs ||= []
+    @navs.push(nav.to_sym)
+  end
 end

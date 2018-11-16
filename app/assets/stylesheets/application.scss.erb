@@ -1,16 +1,22 @@
 @import 'variables';
 
+$primary: $red5;
+
 @font-face {
   font-family: 'Phantom Sans';
-  src: url('https://hackclub.com/fonts/Phantom_Sans_0.4/Regular.woff') format('woff'),
-    url('https://hackclub.com/fonts/Phantom_Sans_0.4/Regular.woff2') format('woff2');
+  src: url('https://hackclub.com/fonts/Phantom_Sans_0.4/Regular.woff')
+      format('woff'),
+    url('https://hackclub.com/fonts/Phantom_Sans_0.4/Regular.woff2')
+      format('woff2');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: 'Phantom Sans';
-  src: url('https://hackclub.com/fonts/Phantom_Sans_0.4/Bold.woff') format('woff'),
-    url('https://hackclub.com/fonts/Phantom_Sans_0.4/Bold.woff2') format('woff2');
+  src: url('https://hackclub.com/fonts/Phantom_Sans_0.4/Bold.woff')
+      format('woff'),
+    url('https://hackclub.com/fonts/Phantom_Sans_0.4/Bold.woff2')
+      format('woff2');
   font-weight: bold;
   font-style: normal;
 }
@@ -76,11 +82,9 @@ select,
 textarea {
   -webkit-appearance: none;
   display: block;
-  vertical-align: middle;
   max-width: 32rem;
   min-height: 36px;
   line-height: inherit;
-  font-family: inherit;
   font-size: 16px;
   padding-left: 8px;
   padding-right: 8px;
@@ -427,8 +431,7 @@ td {
 .container {
   width: 100%;
   max-width: 64rem;
-  margin: 1rem auto;
-
+  margin: auto;
   padding: 1rem;
 }
 
@@ -668,6 +671,7 @@ th {
     }
   }
 }
+@import 'nav';
 @import 'basscss';
 @import 'space';
 @import 'utilities';

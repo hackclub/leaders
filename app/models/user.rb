@@ -31,6 +31,10 @@ class User < ApplicationRecord
     self.leader.present?
   end
 
+  def club
+    clubs.first
+  end
+
   def api_record
     @api_record ||= ApiService.get_user(self.api_id, self.api_access_token)
   end
