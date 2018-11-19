@@ -110,6 +110,7 @@ ActiveRecord::Schema.define(version: 2018_11_13_214801) do
     t.text "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "email_on_check_in", default: false, null: false
     t.index ["api_access_token"], name: "index_users_on_api_access_token", unique: true
     t.index ["api_id"], name: "index_users_on_api_id", unique: true
   end

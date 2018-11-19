@@ -48,4 +48,19 @@ class UsersController < ApplicationController
     sign_out
     redirect_to root_path
   end
+
+  def update
+    user = current_user
+    if user.update(user_params)
+      redirect_to :root
+    else
+      redirect_to :root
+    end
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:email_on_check_in, :id)
+  end
 end
