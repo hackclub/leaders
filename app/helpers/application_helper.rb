@@ -20,7 +20,7 @@ module ApplicationHelper
   end
 
   def clean_autolink(text)
-    link_to remove_url_head(text), text, target: '_blank', style: 'color: inherit'
+    link_to remove_url_head(text), text, target: '_blank', rel: 'noreferrer noopener'
   end
 
   def inline_svg(filename, options = {})

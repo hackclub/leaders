@@ -1,0 +1,26 @@
+<% activate_nav! :marketing %>
+<% content_for :page_class do %>bg-snow<% end %>
+
+<h1 class="heading">
+  Marketing posts
+  <%= link_to 'New post', new_post_path, class: 'btn bg-success' %>
+</h1>
+<p class="slate" style="max-width: 32rem;">
+  This is a place for you as a club leader to post & check out
+  posters, videos, articles, & other marketing materials with fellow leaders.
+</p>
+
+</main>
+
+<main class="bg-snow w-100 flex-auto">
+<article class="posts container">
+  <% @posts.each do |post| %>
+     <%= link_to post, class: 'posts--item' do %>
+      <%= image_tag post.file %>
+      <footer>
+        <p class="black bold mt1 mb0"><%= post.name.truncate(128) %></p>
+        <p class="h5 muted mb0"><%= post.club.name %></p>
+      </footer>
+    <% end %>
+  <% end %>
+</article>

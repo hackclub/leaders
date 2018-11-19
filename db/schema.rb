@@ -73,6 +73,17 @@ ActiveRecord::Schema.define(version: 2018_11_13_214801) do
     t.index ["user_id"], name: "index_dns_records_on_user_id"
   end
 
+  create_table "posts", force: :cascade do |t|
+    t.text "name"
+    t.text "url"
+    t.bigint "club_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["club_id"], name: "index_posts_on_club_id"
+    t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
   create_table "pull_requests", force: :cascade do |t|
     t.string "repo"
     t.integer "number"
@@ -105,4 +116,6 @@ ActiveRecord::Schema.define(version: 2018_11_13_214801) do
 
   add_foreign_key "dns_records", "subdomains"
   add_foreign_key "dns_records", "users"
+  add_foreign_key "posts", "clubs"
+  add_foreign_key "posts", "users"
 end

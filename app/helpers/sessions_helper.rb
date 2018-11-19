@@ -35,6 +35,13 @@ module SessionsHelper
     end
   end
 
+  def signed_in_leader
+    unless signed_in? && current_user.leader?
+      store_location
+      redirect_to sign_in_users_path, flash: { error:  'Please sign in as a leader' }
+    end
+  end
+
   def signed_in_admin
     unless admin_signed_in?
       store_location

@@ -8,6 +8,10 @@
         <%= inline_svg nav_active?(:my_club) ? 'flag-fill.svg' : 'flag.svg' %>
         <span>My Club</span>
       <% end %>
+      <%= link_to posts_path, class: 'nav__tab', 'aria-current': nav_active?(:marketing) do %>
+        <%= inline_svg 'idea.svg' %>
+        <span>Marketing</span>
+      <% end %>
       <%= link_to logout_users_path, class: 'nav__tab', method: :delete do %>
         <%= inline_svg 'door-leave.svg' %>
         <span>Sign out</span>

@@ -17,4 +17,6 @@ Rails.application.routes.draw do
   resources :clubs, only: [:index, :show], param: :slug
   resources :subdomains, param: :slug
   resources :dns_records
+
+  resources :posts, path: 'marketing'
 end

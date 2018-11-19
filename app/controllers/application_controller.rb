@@ -7,6 +7,12 @@ class ApplicationController < ActionController::Base
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   rescue_from ApiService::AuthorizationInvalid , with: :api_auth_invalid
 
+  helper_method :my?
+
+  def my?(object)
+    object.user == current_user
+  end
+
   private
 
   def user_not_authorized
