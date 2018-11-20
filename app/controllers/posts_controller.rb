@@ -24,7 +24,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params.merge({
       user: current_user,
-      club: current_user.club
+      club: current_user.first_club
     }))
 
     if @post.save

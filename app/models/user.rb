@@ -33,7 +33,7 @@ class User < ApplicationRecord
     self.leader.present?
   end
 
-  def club
+  def first_club
     clubs.first
   end
 
