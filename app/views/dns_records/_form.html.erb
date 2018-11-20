@@ -39,5 +39,5 @@
     <%= form.hidden_field :subdomain_id %>
   <% end %>
 
-  <%= form.submit (dns_record.persisted? ? 'Update' : 'Create'), class: (dns_record.persisted? ? 'bg-info' : 'bg-success') %>
+  <%= form.submit (dns_record.persisted? ? 'Update' : 'Create'), class: (dns_record.persisted? ? 'bg-info' : 'bg-success'), data: { confirm: 'Are you sure?' } %>
 <% end %>
