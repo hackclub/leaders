@@ -48,6 +48,13 @@ module SessionsHelper
       redirect_to sign_in_users_path, flash: { error: 'Please sign in as admin' }
     end
   end
+  
+  def signed_in_leader_or_admin
+    unless signed_in? && (current_user.leader? || current_user.admin?)
+      store_location
+      redirect_to sign_in_users_path, flash: { error:  'Please sign in first' }
+    end
+  end
 
   def sign_out
     current_user.update_attribute(:session_token, User.digest(User.new_session_token))
