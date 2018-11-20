@@ -30,7 +30,7 @@ $__shades: (
 );
 
 @each $name, $val in $__shades {
-  .shade-#{$name} {
+  .shade-#{'' + $name} {
     background-color: $val;
   }
 }
@@ -52,15 +52,15 @@ $__palette: (
 );
 
 @each $name, $val in $__palette {
-  .#{$name} {
+  .#{'' + $name} {
     color: $val !important;
   }
 
-  .bg-#{$name} {
+  .bg-#{'' + $name} {
     background-color: $val !important;
   }
 
-  .b--#{$name} {
+  .b--#{'' + $name} {
     border-color: $val !important;
   }
 }
@@ -110,4 +110,58 @@ $__palette: (
 }
 .w-auto {
   width: auto;
+}
+
+@media screen and (min-width: 32em) {
+  .w-10-md {
+    width: 10%;
+  }
+  .w-20-md {
+    width: 20%;
+  }
+  .w-25-md {
+    width: 25%;
+  }
+  .w-30-md {
+    width: 30%;
+  }
+  .w-33-md {
+    width: 33%;
+  }
+  .w-34-md {
+    width: 34%;
+  }
+  .w-40-md {
+    width: 40%;
+  }
+  .w-50-md {
+    width: 50%;
+  }
+  .w-60-md {
+    width: 60%;
+  }
+  .w-70-md {
+    width: 70%;
+  }
+  .w-75-md {
+    width: 75%;
+  }
+  .w-80-md {
+    width: 80%;
+  }
+  .w-90-md {
+    width: 90%;
+  }
+  .w-100-md {
+    width: 100%;
+  }
+  .w-third-md {
+    width: calc(100% / 3);
+  }
+  .w-two-thirds-md {
+    width: calc(100% / 1.5);
+  }
+  .w-auto-md {
+    width: auto;
+  }
 }

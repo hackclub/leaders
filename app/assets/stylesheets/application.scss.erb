@@ -1,16 +1,22 @@
 @import 'variables';
 
+$primary: $red5;
+
 @font-face {
   font-family: 'Phantom Sans';
-  src: url('https://hackclub.com/fonts/Phantom_Sans_0.4/Regular.woff') format('woff'),
-    url('https://hackclub.com/fonts/Phantom_Sans_0.4/Regular.woff2') format('woff2');
+  src: url('https://hackclub.com/fonts/Phantom_Sans_0.4/Regular.woff')
+      format('woff'),
+    url('https://hackclub.com/fonts/Phantom_Sans_0.4/Regular.woff2')
+      format('woff2');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: 'Phantom Sans';
-  src: url('https://hackclub.com/fonts/Phantom_Sans_0.4/Bold.woff') format('woff'),
-    url('https://hackclub.com/fonts/Phantom_Sans_0.4/Bold.woff2') format('woff2');
+  src: url('https://hackclub.com/fonts/Phantom_Sans_0.4/Bold.woff')
+      format('woff'),
+    url('https://hackclub.com/fonts/Phantom_Sans_0.4/Bold.woff2')
+      format('woff2');
   font-weight: bold;
   font-style: normal;
 }
@@ -65,6 +71,10 @@ textarea {
   resize: none;
 }
 
+img {
+  max-width: 100%;
+}
+
 input[type='text'],
 input[type='url'],
 input[type='email'],
@@ -76,11 +86,9 @@ select,
 textarea {
   -webkit-appearance: none;
   display: block;
-  vertical-align: middle;
   max-width: 32rem;
   min-height: 36px;
   line-height: inherit;
-  font-family: inherit;
   font-size: 16px;
   padding-left: 8px;
   padding-right: 8px;
@@ -162,7 +170,7 @@ a {
   padding: 1rem;
   margin-bottom: 24px;
   background-color: $red0;
-  border-radius: 4px;
+  border-radius: 6px;
 
   h2 {
     color: $red7;
@@ -364,9 +372,14 @@ td {
 .card {
   background-color: rgba(255, 255, 255, 0.9875);
   box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.0625), 0 4px 8px 0 rgba(0, 0, 0, 0.125);
+  transition: 0.125s ease-in-out box-shadow;
   padding: 1rem;
-  border-radius: 0.5rem;
+  border-radius: 6px;
   overflow: hidden;
+}
+a.card:hover,
+a.card:focus {
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.125), 0 8px 16px 0 rgba(0, 0, 0, 0.125);
 }
 
 .progress {
@@ -424,11 +437,31 @@ td {
   font-size: 3rem;
 }
 
+.posts {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  grid-gap: 1rem;
+}
+.posts--item {
+  @extend .card;
+  padding: 1rem;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  img {
+    flex: 1 1 auto;
+    object-fit: contain;
+    border-radius: 4px;
+  }
+  footer {
+    justify-self: flex-end;
+  }
+}
+
 .container {
   width: 100%;
   max-width: 64rem;
-  margin: 1rem auto;
-
+  margin: auto;
   padding: 1rem;
 }
 
@@ -444,6 +477,8 @@ td {
   text-transform: uppercase;
   text-decoration: none;
   color: $gray7;
+  margin-top: 1rem;
+  display: inline-block;
   &:after {
     content: ' »';
   }
@@ -668,6 +703,7 @@ th {
     }
   }
 }
+@import 'nav';
 @import 'basscss';
 @import 'space';
 @import 'utilities';

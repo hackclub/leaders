@@ -31,14 +31,28 @@ module SessionsHelper
   def signed_in_user
     unless signed_in?
       store_location
-      redirect_to auth_users_path, flash: { error:  'Please sign in' }
+      redirect_to sign_in_users_path, flash: { error:  'Please sign in' }
+    end
+  end
+
+  def signed_in_leader
+    unless signed_in? && current_user.leader?
+      store_location
+      redirect_to sign_in_users_path, flash: { error:  'Please sign in as a leader' }
     end
   end
 
   def signed_in_admin
     unless admin_signed_in?
       store_location
-      redirect_to auth_users_path, flash: { error: 'Please sign in as admin' }
+      redirect_to sign_in_users_path, flash: { error: 'Please sign in as admin' }
+    end
+  end
+  
+  def signed_in_leader_or_admin
+    unless signed_in? && (current_user.leader? || current_user.admin?)
+      store_location
+      redirect_to sign_in_users_path, flash: { error:  'Please sign in first' }
     end
   end
 

@@ -1,0 +1,29 @@
+<% activate_nav! :marketing %>
+
+<h1 class="heading">
+  <%= @post.name %>
+  <%= link_to 'Open linked site', @post.url, class: 'btn bg-info' if @post.url.present? %>
+</h1>
+
+<div class="md-flex mt3">
+  <div class="w-two-thirds-md md-pr2 mb2">
+    <%= image_tag @post.file %>
+  </div>
+  <div class="w-third-md md-pl2">
+    <p class="h3 mt0 mb0">From <strong><%= @post.club.name %></strong></p>
+    <p class="muted h5">Posted <%= time_ago_in_words @post.created_at %> ago</p>
+
+    <% if @post.url.present? %>
+      <p>URL: <%= clean_autolink @post.url %></p>
+    <% else %>
+      <p class="muted">No linked site.</p>
+    <% end %>
+
+    <%= link_to 'Edit', edit_post_path(@post), class: 'btn bg-info' if my?(@post) %>
+    <%= link_to 'Delete',
+      @post,
+      method: :delete,
+      data: { confirm: 'Are you sure?' },
+      class: 'btn bg--destroy' if my?(@post) %> 
+    </div>
+</div>

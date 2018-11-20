@@ -1,0 +1,32 @@
+<nav
+  role="navigation"
+  class="nav bg-blur pas phm-ns tc dn-p"
+  data-behavior="nav">
+  <article class="nav__container">
+    <% if current_user %>
+      <%= link_to root_path, class: 'nav__tab', 'aria-current': nav_active?(:my_club) do %>
+        <%= inline_svg nav_active?(:my_club) ? 'flag-fill.svg' : 'flag.svg' %>
+        <span>My Club</span>
+      <% end %>
+      <%= link_to posts_path, class: 'nav__tab', 'aria-current': nav_active?(:marketing) do %>
+        <%= inline_svg 'idea.svg' %>
+        <span>Marketing</span>
+      <% end %>
+      <%= link_to logout_users_path, class: 'nav__tab', method: :delete do %>
+        <%= inline_svg 'door-leave.svg' %>
+        <span>Sign out</span>
+      <% end %>
+    <% else %>
+      <%= link_to sign_in_users_path, class: 'nav__tab', 'aria-current': nav_active?(:auth) do %>
+        <%= inline_svg 'door-enter.svg' %>
+        <span>Sign in</span>
+      <% end %>
+    <% end %>
+  </article>
+</nav>
+
+<% flash.each do |key, value| %>
+  <article role="alertdialog" class="flash bg-<%= key %> mx-auto mt2 w-100">
+    <%= value %>
+  </article>
+<% end %>

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:update] do
     collection do
-      get 'auth', to: 'users#auth'
+      get 'auth', to: 'users#auth', as: :sign_in
       post 'login_code', to: 'users#login_code'
       post 'exchange_login_code', to: 'users#exchange_login_code'
       delete 'logout', to: 'users#logout'
@@ -17,4 +17,6 @@ Rails.application.routes.draw do
   resources :clubs, only: [:index, :show], param: :slug
   resources :subdomains, param: :slug
   resources :dns_records
+
+  resources :posts, path: 'marketing'
 end

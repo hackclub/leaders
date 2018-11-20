@@ -1,0 +1,8 @@
+<% activate_nav! :marketing %>
+
+<%= link_to @post.name, @post, class: 'breadcrumb' %>
+
+<h1>Edit Your Post</h1>
+<p class="slate h5">You can’t re-upload files—if you need to, <%= link_to 'delete this post', @post, method: :delete, data: { confirm: 'Are you sure?' }, class: 'error' %> & create a new one.</p>
+
+<%= render 'form', post: @post %>

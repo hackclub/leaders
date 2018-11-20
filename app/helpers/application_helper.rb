@@ -20,7 +20,7 @@ module ApplicationHelper
   end
 
   def clean_autolink(text)
-    link_to remove_url_head(text), text, target: '_blank', style: 'color: inherit'
+    link_to remove_url_head(text), text, target: '_blank', rel: 'noreferrer noopener'
   end
 
   def inline_svg(filename, options = {})
@@ -35,5 +35,15 @@ module ApplicationHelper
     end
     options.each { |key, value| svg[key.to_s] = value }
     doc.to_html.html_safe
+  end
+
+  def nav_active?(nav)
+    @navs ||= []
+    @navs.include?(nav.to_sym)
+  end
+
+  def activate_nav!(nav)
+    @navs ||= []
+    @navs.push(nav.to_sym)
   end
 end

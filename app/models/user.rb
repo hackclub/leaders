@@ -4,6 +4,8 @@ class User < ApplicationRecord
   has_many :dns_records
   has_and_belongs_to_many :clubs
 
+  has_many :posts
+
   validates_presence_of :api_id, :api_access_token, :email
   validates_uniqueness_of :api_id, :api_access_token, :email
 
@@ -29,6 +31,10 @@ class User < ApplicationRecord
 
   def leader?
     self.leader.present?
+  end
+
+  def first_club
+    clubs.first
   end
 
   def api_record
