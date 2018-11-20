@@ -30,7 +30,7 @@ $__shades: (
 );
 
 @each $name, $val in $__shades {
-  .shade-#{$name} {
+  .shade-#{'' + $name} {
     background-color: $val;
   }
 }
@@ -52,15 +52,15 @@ $__palette: (
 );
 
 @each $name, $val in $__palette {
-  .#{$name} {
+  .#{'' + $name} {
     color: $val !important;
   }
 
-  .bg-#{$name} {
+  .bg-#{'' + $name} {
     background-color: $val !important;
   }
 
-  .b--#{$name} {
+  .b--#{'' + $name} {
     border-color: $val !important;
   }
 }
