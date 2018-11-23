@@ -15,16 +15,6 @@
         <% if @club.club_website %>
         <strong>Website:</strong> <%= clean_autolink @club.club_website %>
         <% end %>
-        <strong>Check-ins:</strong>
-        <%= @email_on_check_in ? 'enabled' : 'disabled' %>
-        <%= form_with model: @current_user do |form| %>
-          <%= form.hidden_field :email_on_check_in, value: !@email_on_check_in %>
-          <% if @email_on_check_in %>
-          <%= form.submit 'Opt-out of check-in reminders (beta)', class: 'btn bg-destroy' %>
-          <% else %>
-          <%= form.submit 'Opt-in to check-in reminders (beta)', class: 'btn bg-success' %>
-          <% end %>
-        <% end %>
       </p>
     </article>
   </div>
@@ -70,5 +60,29 @@
         </p>
       </article>
     <% end %>
+  </div>
+  <div class="club-summary__panel">
+    <h2 class="heading">
+      Check-ins <!--span class="slate regular ml1">(beta)<span-->
+      <%= form_with model: @current_user, class: "ml-auto" do |form| %>
+        <%= form.hidden_field :email_on_check_in, value: !@email_on_check_in %>
+        <% if @email_on_check_in %>
+        <%= form.submit 'Opt-out', class: 'btn bg-destroy ml-auto' %>
+        <% else %>
+        <%= form.submit 'Opt-in', class: 'btn bg-success ml-auto' %>
+        <% end %>
+      <% end %>
+    </h2>
+    <article>
+      <p>
+        <strong>Check-ins:</strong>
+        <% if @email_on_check_in %>
+          enabled
+        <% else %>
+          disabled
+          <p class="italic">To track your club’s meetings with this tool, opt-in to the beta</p>
+        <% end %>
+      </p>
+    </article>
   </div>
 </section>
