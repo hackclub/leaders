@@ -11,18 +11,20 @@
     <article>
       <p>
         <strong>School:</strong> <%= @club.high_school_name %><br />
-        <strong>Address:</strong> <%= @club.high_school_address %><br />
+        <strong>Address:</strong> <%= @club.high_school_address %>
         <% if @club.club_website %>
+        <br />
         <strong>Website:</strong> <%= clean_autolink @club.club_website %>
         <% end %>
+        <br />
         <strong>Check-ins:</strong>
         <%= @email_on_check_in ? 'enabled' : 'disabled' %>
         <%= form_with model: @current_user do |form| %>
           <%= form.hidden_field :email_on_check_in, value: !@email_on_check_in %>
           <% if @email_on_check_in %>
-          <%= form.submit 'Opt-out of check-in reminders (beta)', class: 'btn bg-destroy' %>
+          <%= form.submit 'Opt-out of check-in reminders (beta)', class: 'btn bg-destroy btn--sm' %>
           <% else %>
-          <%= form.submit 'Opt-in to check-in reminders (beta)', class: 'btn bg-success' %>
+          <%= form.submit 'Opt-in to check-in reminders (beta)', class: 'btn bg-success btn--sm' %>
           <% end %>
         <% end %>
       </p>
