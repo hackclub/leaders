@@ -1,6 +1,8 @@
 @import 'variables';
-
-$primary: $red5;
+@import 'space';
+@import 'nav';
+@import 'basscss';
+@import 'utilities';
 
 @font-face {
   font-family: 'Phantom Sans';
@@ -433,6 +435,7 @@ a.card:focus {
 .club-heading {
   text-align: center;
   color: $white;
+  text-shadow: 0px 0px $space-1 $gray8;
   border-bottom: none;
   font-size: 3rem;
 }
@@ -703,7 +706,3 @@ th {
     }
   }
 }
-@import 'nav';
-@import 'basscss';
-@import 'space';
-@import 'utilities';
