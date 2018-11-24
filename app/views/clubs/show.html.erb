@@ -63,7 +63,7 @@
   </div>
   <div class="club-summary__panel">
     <h2 class="heading">
-      Check-ins <!--span class="slate regular ml1">(beta)<span-->
+      Check-ins
       <%= form_with model: @current_user, class: "ml-auto" do |form| %>
         <%= form.hidden_field :email_on_check_in, value: !@email_on_check_in %>
         <% if @email_on_check_in %>
@@ -83,6 +83,23 @@
           <p class="italic">To track your club’s meetings with this tool, opt-in to the beta</p>
         <% end %>
       </p>
+      <p>Miss a meeting? <%= link_to 'Record it here', new_meeting_path(club_slug: @club.slug) %></p>
     </article>
   </div>
 </section>
+
+<% if @meetings %>
+  <h1 class="club-heading mt3 md-mt4">Meeting Timeline</h1>
+  <div class="club-timeline">
+  <% @meetings.each do |meeting| %>
+    <div class="club-timeline__card">
+      On <span class="muted"><%= meeting.start_time.to_date %></span>
+      <% if meeting.attendee_count > 0 %>
+        your club hosted <span class="bold"><%= meeting.attendee_count %></span> attendees
+      <% else %>
+        your club <span class="bold slate">didn't hold a meeting</span>
+      <% end %>
+    </div>
+  <% end %>
+  </div>
+<% end %>
