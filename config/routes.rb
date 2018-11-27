@@ -14,10 +14,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :clubs, only: [:index, :show], param: :slug
+  resources :clubs, only: [:index, :show], param: :slug, shallow: true do
+    resources :meetings
+  end
   resources :subdomains, param: :slug
   resources :dns_records
-  resources :meetings
 
   resources :posts, path: 'marketing'
 end
