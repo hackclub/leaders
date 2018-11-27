@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   end
 
   resources :clubs, only: [:index, :show], param: :slug, shallow: true do
-    resources :meetings
+    resources :meetings, except: :index
   end
   resources :subdomains, param: :slug
   resources :dns_records

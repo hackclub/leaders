@@ -10,10 +10,5 @@
   <%= @meeting.attendee_count %>
 </p>
 
-<p>
-  <strong>Club:</strong>
-  <%= @meeting.club %>
-</p>
-
 <%= link_to 'Edit', edit_meeting_path(@meeting) %> |
-<%= link_to 'Back', meetings_path %>
+<%= link_to 'Back', club_path(@meeting.club) %>
