@@ -21,7 +21,7 @@
   <div class="club-summary__panel">
     <h2 class="pl2 pr2">
       Leaders
-      <%= badge_for @club.api_record['new_leaders'].count, class: 'bg-white info' %>
+      <%= badge_for @club.api_record['new_leaders'].count, class: 'bg-smoke info' %>
     </h2>
     <ul class="list list--row list--unlinked">
       <% @club.api_record['new_leaders'].each do |leader| %>
@@ -64,7 +64,8 @@
   <div class="club-summary__panel">
     <h2 class="heading">
       Check-ins
-      <%= form_with model: @current_user, class: "ml-auto" do |form| %>
+      <%= badge_for @meetings.count, class: 'bg-smoke info' %>
+      <%= form_with model: @current_user, class: 'ml-auto' do |form| %>
         <%= form.hidden_field :email_on_check_in, value: !@email_on_check_in %>
         <% if @email_on_check_in %>
         <%= form.submit 'Opt-out', class: 'btn bg-destroy ml-auto' %>
@@ -83,13 +84,13 @@
           <p class="italic">To track your club’s meetings with this tool, opt-in to the beta</p>
         <% end %>
       </p>
-      <p>Miss a meeting? <%= link_to 'Record it here', new_meeting_path(club_slug: @club.slug) %></p>
+      <p>Miss a meeting? <%= link_to 'Record it here', new_club_meeting_path(club_slug: @club.slug) %></p>
     </article>
   </div>
 </section>
 
 <% if @meetings %>
-  <h1 class="club-heading mt3 md-mt4">Meeting Timeline</h1>
+  <h1 class="club-heading mt3 md-mt4">Timeline</h1>
   <div class="club-timeline">
   <% @meetings.each do |meeting| %>
     <div class="club-timeline__card">
