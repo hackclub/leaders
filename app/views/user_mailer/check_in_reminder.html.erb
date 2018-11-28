@@ -1,10 +1,13 @@
-<a href="https://goo.gl/forms/tSnCGSvn8BvHh3Mi1">
+<%= link_to new_club_meeting_url(club_slug: @club.slug, day: Date.today.to_s) do %>
   <h1>Your club check-in link for <%= Date.today.to_s %></h1>
-</a>
+<% end %>
 <p>
-  Your club’s check-in is open for the weekend. Fill out the questions about last week’s meeting <strong>before Monday</strong>.
+  Please fill out the questions about last week’s meeting <strong>before
+  Monday</strong>.
 </p>
-<strong><a href="https://goo.gl/forms/tSnCGSvn8BvHh3Mi1">Check-in for <%= Date.today.to_s %></a></strong>
+<strong>
+  <%= link_to new_club_meeting_url(club_slug: @club.slug, day: Date.today.to_s), new_club_meeting_url(club_slug: @club.slug, day: Date.today.to_s) %>
+</strong>
 <hr>
 <p><em>
   You are receiving this email because you opted-in to weekly check-ins. You
