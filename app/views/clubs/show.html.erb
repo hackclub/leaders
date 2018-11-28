@@ -16,24 +16,13 @@
         <br />
         <strong>Website:</strong> <%= clean_autolink @club.club_website %>
         <% end %>
-        <br />
-        <strong>Check-ins:</strong>
-        <%= @email_on_check_in ? 'enabled' : 'disabled' %>
-        <%= form_with model: @current_user do |form| %>
-          <%= form.hidden_field :email_on_check_in, value: !@email_on_check_in %>
-          <% if @email_on_check_in %>
-          <%= form.submit 'Opt-out of check-in reminders (beta)', class: 'btn bg-destroy btn--sm' %>
-          <% else %>
-          <%= form.submit 'Opt-in to check-in reminders (beta)', class: 'btn bg-success btn--sm' %>
-          <% end %>
-        <% end %>
       </p>
     </article>
   </div>
   <div class="club-summary__panel">
     <h2 class="pl2 pr2">
       Leaders
-      <%= badge_for @club.api_record['new_leaders'].count, class: 'bg-white info' %>
+      <%= badge_for @club.api_record['new_leaders'].count, class: 'bg-smoke info' %>
     </h2>
     <ul class="list list--row list--unlinked">
       <% @club.api_record['new_leaders'].each do |leader| %>
@@ -73,4 +62,47 @@
       </article>
     <% end %>
   </div>
+  <div class="club-summary__panel">
+    <h2 class="heading">
+      Check-ins
+      <%= badge_for @meetings.count, class: 'bg-smoke info' %>
+      <%= form_with model: @current_user, class: 'ml-auto' do |form| %>
+        <%= form.hidden_field :email_on_check_in, value: !@email_on_check_in %>
+        <% if @email_on_check_in %>
+        <%= form.submit 'Opt-out', class: 'btn bg-destroy ml-auto' %>
+        <% else %>
+        <%= form.submit 'Opt-in', class: 'btn bg-success ml-auto' %>
+        <% end %>
+      <% end %>
+    </h2>
+    <article>
+      <p>
+        <strong>Check-ins:</strong>
+        <% if @email_on_check_in %>
+          enabled
+        <% else %>
+          disabled
+          <p class="italic">To track your club’s meetings with this tool, opt-in to the beta</p>
+        <% end %>
+      </p>
+      <p>Miss a meeting? <%= link_to 'Record it here', new_club_meeting_path(club_slug: @club.slug) %></p>
+    </article>
+  </div>
 </section>
+
+<% if @meetings %>
+  <h1 class="club-heading mt3 md-mt4">Timeline</h1>
+  <div class="club-timeline">
+  <% @meetings.each do |meeting| %>
+    <div class="club-timeline__card">
+      On <span class="muted"><%= meeting.start_time.to_date %></span>
+      <% if meeting.attendee_count > 0 %>
+        your club hosted <span class="bold"><%= meeting.attendee_count %></span> attendees
+      <% else %>
+        your club <span class="bold slate">didn't hold a meeting</span>
+      <% end %>
+      <%= link_to 'Show', meeting_path(meeting), class: 'bold slate ml2' %>
+    </div>
+  <% end %>
+  </div>
+<% end %>

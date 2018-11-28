@@ -1,6 +1,8 @@
 @import 'variables';
-
-$primary: $red5;
+@import 'space';
+@import 'nav';
+@import 'basscss';
+@import 'utilities';
 
 @font-face {
   font-family: 'Phantom Sans';
@@ -275,6 +277,30 @@ td {
   padding-left: 0;
 }
 
+.club-timeline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 32rem;
+  margin: 0 auto;
+}
+
+.club-timeline__card {
+  min-width: 12em;
+  background-color: rgba(255, 255, 255, 0.9875);
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.0625),
+    0 12px 24px 0 rgba(0, 0, 0, 0.125);
+  overflow: hidden;
+  margin: 1rem;
+  padding: 1rem;
+
+  @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+    background-color: rgba(255, 255, 255, 0.875);
+    -webkit-backdrop-filter: saturate(200%) blur(12px);
+  }
+}
+
 .club-summary {
   display: grid;
   grid-gap: 1rem;
@@ -437,6 +463,7 @@ a.card:focus {
 .club-heading {
   text-align: center;
   color: $white;
+  text-shadow: 0px 0px $space-1 $gray8;
   border-bottom: none;
   font-size: 3rem;
 }
@@ -707,7 +734,3 @@ th {
     }
   }
 }
-@import 'nav';
-@import 'basscss';
-@import 'space';
-@import 'utilities';

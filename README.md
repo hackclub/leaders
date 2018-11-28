@@ -14,4 +14,10 @@ Our suite of tools for Hack Club Leaders. Built with Rails.
    ```
 4. Open [localhost:3000](http://localhost:3000)
 
+## Import Heroku PG capture
+
+```
+pg_restore --verbose --clean --no-acl --no-owner -h db -U postgres -d leaders_development latest.dump
+```
+
 MIT License

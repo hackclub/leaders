@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_13_214801) do
+ActiveRecord::Schema.define(version: 2018_11_20_052204) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -73,6 +73,15 @@ ActiveRecord::Schema.define(version: 2018_11_13_214801) do
     t.index ["user_id"], name: "index_dns_records_on_user_id"
   end
 
+  create_table "meetings", force: :cascade do |t|
+    t.datetime "start_time"
+    t.integer "attendee_count"
+    t.bigint "club_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["club_id"], name: "index_meetings_on_club_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.text "name"
     t.text "url"
@@ -117,6 +126,7 @@ ActiveRecord::Schema.define(version: 2018_11_13_214801) do
 
   add_foreign_key "dns_records", "subdomains"
   add_foreign_key "dns_records", "users"
+  add_foreign_key "meetings", "clubs"
   add_foreign_key "posts", "clubs"
   add_foreign_key "posts", "users"
 end
