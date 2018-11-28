@@ -90,7 +90,7 @@
   </div>
 </section>
 
-<% if @meetings %>
+<% if @meetings.count > 0 %>
   <h1 class="club-heading mt3 md-mt4">Timeline</h1>
   <div class="club-timeline">
   <% @meetings.each do |meeting| %>
