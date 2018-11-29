@@ -17,6 +17,7 @@ class Club < ApplicationRecord
   end
 
   def meeting_day
-    self.meetings.count > 0 ? self.meetings.last.start_time.wday : nil
+    # 5, Friday, is the assumed meeting day for clubs that haven't started meeting
+    self.meetings.count > 0 ? self.meetings.last.start_time.wday : 5
   end
 end
