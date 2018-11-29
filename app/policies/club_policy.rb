@@ -4,6 +4,6 @@ class ClubPolicy < ApplicationPolicy
   end
 
   def show?
-    user.admin? || record.api_record['new_leaders'].find(email: user.email)
+    user.admin? || record.api_record['new_leaders'].map{ |l| l['email'] }.include?(user.email)
   end
 end
