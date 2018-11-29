@@ -11,4 +11,12 @@ class Club < ApplicationRecord
   def to_param
     slug
   end
+
+  def users
+    api_record['new_leaders'].map{ |l| User.find_by(email: l['email']) }
+  end
+
+  def meeting_day
+    self.meetings.count > 0 ? self.meetings.last.start_time.wday : nil
+  end
 end
