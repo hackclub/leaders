@@ -1,24 +1,23 @@
 class MeetingsController < ApplicationController
   before_action :set_meeting, only: [:show, :edit, :update, :destroy]
 
-  def index
-    signed_in_admin
-    @meetings = Meeting.all
-  end
-
   def show
+    authorize @meeting
   end
 
   def new
     @club = Club.find_by(slug: params[:club_slug])
     @meeting = Meeting.new(club: @club)
+    authorize @meeting
   end
 
   def edit
+    authorize @meeting
   end
 
   def create
     @meeting = Meeting.new(meeting_params)
+    authorize @meeting
 
     if @meeting.save
       redirect_to @meeting.club, notice: 'Meeting was successfully recorded.'
@@ -28,6 +27,7 @@ class MeetingsController < ApplicationController
   end
 
   def update
+    authorize @meeting
     if @meeting.update(meeting_params)
       redirect_to @meeting, notice: 'Meeting was successfully updated.'
     else
@@ -36,6 +36,7 @@ class MeetingsController < ApplicationController
   end
 
   def destroy
+    authorize @meeting
     @meeting.destroy
     redirect_to meetings_url, notice: 'Meeting was successfully destroyed.'
   end
