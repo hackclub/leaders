@@ -36,9 +36,10 @@ class MeetingsController < ApplicationController
   end
 
   def destroy
+    club = @meeting.club
     authorize @meeting
     @meeting.destroy
-    redirect_to meetings_url, notice: 'Meeting was successfully destroyed.'
+    redirect_to club, notice: 'Meeting was successfully destroyed.'
   end
   private
     def set_meeting

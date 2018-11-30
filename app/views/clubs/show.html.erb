@@ -101,7 +101,8 @@
       <% else %>
         your club <span class="bold slate">didn't hold a meeting</span>
       <% end %>
-      <%= link_to 'Show', meeting_path(meeting), class: 'bold slate ml2' %>
+      <%= link_to 'Delete', meeting_path(meeting), class: 'delete ml1', method: :delete, data: { confirm: 'Are you sure?' } %>
+      <%= link_to 'Show', meeting_path(meeting), class: 'bold slate ml1' %>
     </div>
   <% end %>
   </div>

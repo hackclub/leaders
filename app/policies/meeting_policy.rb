@@ -3,6 +3,14 @@ class MeetingPolicy < ApplicationPolicy
     user.admin? || record.club.api_record['new_leaders'].map{ |l| l['email'] }.include?(user.email)
   end
 
+  def new?
+    user.admin? || record.club.api_record['new_leaders'].map{ |l| l['email'] }.include?(user.email)
+  end
+
+  def create?
+    user.admin? || record.club.api_record['new_leaders'].map{ |l| l['email'] }.include?(user.email)
+  end
+
   def edit?
     user.admin? || record.club.api_record['new_leaders'].map{ |l| l['email'] }.include?(user.email)
   end
