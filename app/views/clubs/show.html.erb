@@ -95,14 +95,18 @@
   <div class="club-timeline">
   <% @meetings.each do |meeting| %>
     <div class="club-timeline__card">
+      <div class="px1">
       On <span class="muted"><%= meeting.start_time.to_date %></span>
       <% if meeting.attendee_count > 0 %>
         your club hosted <span class="bold"><%= meeting.attendee_count %></span> attendees
       <% else %>
         your club <span class="bold slate">didn't hold a meeting</span>
       <% end %>
-      <%= link_to 'Delete', meeting_path(meeting), class: 'delete ml1', method: :delete, data: { confirm: 'Are you sure?' } %>
-      <%= link_to 'Show', meeting_path(meeting), class: 'bold slate ml1' %>
+      </div>
+      <%= link_to 'delete', meeting_path(meeting), class: 'delete px0', method: :delete, data: { confirm: 'Are you sure?' } %>
+      <%= link_to meeting_path(meeting), class: 'px0' do %>
+        <%= image_tag(asset_url('chevron.svg'), class: 'slate arrow') %>
+      <% end %>
     </div>
   <% end %>
   </div>
