@@ -1,7 +1,9 @@
 require 'sidekiq/web'
+require 'admin_constraint'
 
 Rails.application.routes.draw do
-  mount Sidekiq::Web => '/sidekiq'
+  mount Sidekiq::Web => '/sidekiq', constraints: AdminConstraint.new
+  get '/sidekiq', to: 'users#auth' # fallback if admin_constraint fails, meaning user is not signed in
 
   root to: 'static_pages#index'
 
