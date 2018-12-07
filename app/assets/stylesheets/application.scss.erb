@@ -329,6 +329,20 @@ td {
   }
 }
 
+.meeting-form__card {
+  background-color: rgba(255, 255, 255, 0.9875);
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.0625),
+    0 12px 24px 0 rgba(0, 0, 0, 0.125);
+  margin: 0 auto;
+  padding: 1rem;
+
+  @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+    background-color: rgba(255, 255, 255, 0.875);
+    -webkit-backdrop-filter: saturate(200%) blur(12px);
+  }
+}
+
 .club-summary {
   display: grid;
   grid-gap: 1rem;

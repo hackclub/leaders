@@ -18,17 +18,10 @@
 
   <div class="field">
     <%= form.label :attendee_count %>
-    <%= form.number_field :attendee_count %>
+    <%= form.number_field :attendee_count, value: @predicted_attendance || 0 %>
   </div>
 
-  <% if current_user.admin? %>
-  <div class="field">
-    <%= form.label :club_id %>
-    <%= form.text_field :club_id %>
-  </div>
-  <% else %>
   <%= form.hidden_field :club_id %>
-  <% end %>
 
   <div class="actions">
     <%= form.submit %>

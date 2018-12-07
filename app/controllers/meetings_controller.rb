@@ -8,6 +8,8 @@ class MeetingsController < ApplicationController
   def new
     @club = Club.find_by(slug: params[:club_slug])
     @meeting = Meeting.new(club: @club)
+    @club_record = OpenStruct.new @club.attributes.reverse_merge!(@club.api_record)
+    @predicted_attendance = @club.meetings.last&.attendee_count
     authorize @meeting
   end
 

@@ -1,5 +1,9 @@
-<h1>Record a Meeting</h1>
+<% activate_nav! :my_club %>
 
-<%= render 'form', meeting: @meeting %>
+<img src="<%= map_url(@club_record.high_school_latitude, @club_record.high_school_longitude) %>" class="map-header__img">
 
-<%= link_to 'Back', club_path(@club) %>
+<h1 class="club-heading mt3 md-mt4">Record a Meeting</h1>
+
+<div class="meeting-form__card max-width-2">
+  <%= render 'form', meeting: @meeting %>
+</div>
