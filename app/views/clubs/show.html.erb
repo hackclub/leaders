@@ -66,43 +66,44 @@
     <h2 class="heading">
       Check-ins
       <%= badge_for @meetings.count, class: 'bg-smoke info' %>
-      <%= form_with model: @current_user, class: 'ml-auto' do |form| %>
-        <%= form.hidden_field :email_on_check_in, value: !@email_on_check_in %>
-        <% if @email_on_check_in %>
-        <%= form.submit 'Opt-out', class: 'btn bg-destroy ml-auto' %>
-        <% else %>
-        <%= form.submit 'Opt-in', class: 'btn bg-success ml-auto' %>
-        <% end %>
-      <% end %>
+      <%= link_to "New meeting", new_club_meeting_path(club_slug: @club.slug), class: 'btn bg-success' %>
     </h2>
     <article>
-      <p>
-        <strong>Check-ins:</strong>
-        <% if @email_on_check_in %>
-          enabled
-        <% else %>
-          disabled
-          <p class="italic">To track your club’s meetings with this tool, opt-in to the beta</p>
+      <div class="flex items-center">
+        <p>
+          <strong>Check-ins:</strong>
+          <% if @email_on_check_in %>
+            enabled
+          <% else %>
+            disabled
+          <% end %>
+        </p>
+        <%= form_with model: @current_user, class: 'ml-auto inline' do |form| %>
+          <% if @email_on_check_in %>
+          <%= form.submit 'Opt-out', class: 'btn btn--destroy btn--sm' %>
+          <% else %>
+          <%= form.submit 'Opt-in', class: 'btn btn--success btn--sm' %>
+          <% end %>
+          <%= form.hidden_field :email_on_check_in, value: !@email_on_check_in %>
         <% end %>
-      </p>
-      <p>Miss a meeting? <%= link_to 'Record it here', new_club_meeting_path(club_slug: @club.slug) %></p>
+      </div>
     </article>
   </div>
 </section>
 
 <% if @meetings.count > 0 %>
-  <h1 class="club-heading mt3 md-mt4">Timeline</h1>
   <div class="club-timeline">
+  <h2 class="club-timeline__heading mt3 md-mt4 caps">Timeline</h2>
   <% @meetings.each do |meeting| %>
     <div class="club-timeline__card">
-      <div class="px1">
+      <span class="px1">
       On <span class="muted"><%= meeting.start_time.to_date %></span>
       <% if meeting.attendee_count > 0 %>
         your club hosted <span class="bold"><%= meeting.attendee_count %></span> attendees
       <% else %>
         your club <span class="bold slate">didn't hold a meeting</span>
       <% end %>
-      </div>
+      </span>
       <%= link_to 'delete', meeting_path(meeting), class: 'delete px0', method: :delete, data: { confirm: 'Are you sure?' } %>
       <%= link_to meeting_path(meeting), class: 'px0' do %>
         <%= image_tag(asset_url('chevron.svg'), class: 'slate arrow') %>
