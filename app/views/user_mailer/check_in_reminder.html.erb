@@ -2,8 +2,7 @@
   <h1>Your club check-in link for <%= Date.today.to_s %></h1>
 <% end %>
 <p>
-  Please fill out the questions about last week’s meeting <strong>before
-  Monday</strong>.
+  Hey, hope your <%= %w{minute hour day week}.sample %>’s going great! Did you have a club meeting this week?
 </p>
 <strong>
   <%= link_to new_club_meeting_url(club_slug: @club.slug, day: Date.today.to_s), new_club_meeting_url(club_slug: @club.slug, day: Date.today.to_s) %>
