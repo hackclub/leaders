@@ -1,6 +1,6 @@
 <% activate_nav! :my_club %>
 
-<img src="<%= map_url(@club.high_school_latitude, @club.high_school_longitude) %>" class="map-header__img">
+<img src="<%= map_url(@club) %>" class="map-header__img">
 <h1 class="club-heading mt3 md-mt4"><%= @club.high_school_name %></h1>
 
 <section class="club-summary mt2 mb2 md-mt3 md-mb3">
