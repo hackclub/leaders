@@ -66,27 +66,24 @@
     <h2 class="heading">
       Check-ins
       <%= badge_for @meetings.count, class: 'bg-smoke info' %>
-      <%= link_to "New meeting", new_club_meeting_path(club_slug: @club.slug), class: 'btn bg-success' %>
     </h2>
     <article>
-      <div class="flex items-center">
-        <p>
-          <strong>Check-ins:</strong>
-          <% if @email_on_check_in %>
-            enabled
-          <% else %>
-            disabled
-          <% end %>
-        </p>
-        <%= form_with model: @current_user, class: 'ml-auto inline' do |form| %>
-          <% if @email_on_check_in %>
-          <%= form.submit 'Opt-out', class: 'btn btn--destroy btn--sm' %>
-          <% else %>
-          <%= form.submit 'Opt-in', class: 'btn btn--success btn--sm' %>
-          <% end %>
-          <%= form.hidden_field :email_on_check_in, value: !@email_on_check_in %>
+      <p>
+        <% if @email_on_check_in %>
+          We’ll email you after your next meeting with instructions because you have check-ins enabled.
+        <% else %>
+          We won’t email you for updates about your club.
         <% end %>
-      </div>
+      </p>
+      <%= form_with model: @current_user, class: "m2" do |form| %>
+        <% if @email_on_check_in %>
+        <%= form.submit 'Opt-out', class: 'btn btn--destroy btn--sm' %>
+        <% else %>
+        <%= form.submit 'Opt-in', class: 'btn btn--success btn--sm' %>
+        <% end %>
+        <%= form.hidden_field :email_on_check_in, value: !@email_on_check_in %>
+        <%= form.hidden_field :active_club_page, value: @club.id %>
+      <% end %>
     </article>
   </div>
 </section>
