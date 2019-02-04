@@ -1,15 +1,19 @@
-<%= link_to new_club_meeting_url(club_slug: @club.slug, day: Date.today.to_s) do %>
-  <h1>Your club check-in link for <%= Date.today.to_s %></h1>
-<% end %>
 <p>
-  Hey, hope your <%= %w{minute hour day week}.sample %>’s going great! Did you have a club meeting this week?
+Hi!
 </p>
-<strong>
-  <%= link_to new_club_meeting_url(club_slug: @club.slug, day: Date.today.to_s), new_club_meeting_url(club_slug: @club.slug, day: Date.today.to_s) %>
-</strong>
-<hr>
+<p>
+We’re trying something new to get an eye on how clubs are doing. Please <strong>reply to this email w/ details about your most recent club meeting</strong>. How many hackers showed up? What’d they work on? What day did you meet & for how long? Attached pics are great!
+</p>
+<p>
+We’ll be you emailing after each meeting, so keep this info in mind for future meetings. Please don’t hesitate to let us know your ideas & feedback on how we can improve getting updates from leaders like you.
+</p>
 <p><em>
-  You are receiving this email because you opted-in to weekly check-ins. You
-  can turn this off by opting-out in your <a
-  href="https://leaders.hackclub.com">leader dashboard</a>.
+- Hack Club HQ
 </em></p>
+<hr />
+<p>
+Why are we checking-in with clubs? The short answer is that we’d be a bad non-profit if we don’t get feedback from our users. Regular companies have feedback built into their product: make a bad product, you’ll get fewer sales. Non-profits don’t have that feedback loop–their source of money is usually disconnected from the users of their product.
+</p>
+<p>
+The longer answer involves feedback loops and game theory, and I’d rather not write an essay about this. If you’ve got questions though, please ask. I love conversing about this stuff.
+</p>
