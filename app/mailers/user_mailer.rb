@@ -5,7 +5,9 @@ class UserMailer < ApplicationMailer
 
     clubs.each do |club|
       @club = club
-      mail to: email, subject: "Check-in w/ #{@club.name} Hack Club on #{Date.today.to_s}"
+      mail to: email,
+           reply_to: 'checkin@hackclub.com',
+           subject: "Check-in w/ #{@club.name} Hack Club on #{Date.today.to_s}"
     end
   end
 end
