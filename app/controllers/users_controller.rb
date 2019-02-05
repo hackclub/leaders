@@ -51,10 +51,12 @@ class UsersController < ApplicationController
 
   def update
     user = current_user
+    club = Club.find(params[:user][:active_club_page])
+
+    redirect_location = club.nil? ? :root : club_path(club)
+
     if user.update(user_params)
-      redirect_to :root
-    else
-      redirect_to :root
+      redirect_to club_path(club)
     end
   end
 
