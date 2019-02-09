@@ -41,6 +41,13 @@ class User < ApplicationRecord
     @api_record ||= ApiService.get_user(self.api_id, self.api_access_token)
   end
 
+  def check_in(club=nil)
+    clubs = club.nil? ? self.clubs : [club]
+    clubs.each do |club|
+      UserMailer.with(user: self, club: club).check_in.deliver_later
+    end
+  end
+
   private
 
   def create_session_token

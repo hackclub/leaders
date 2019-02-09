@@ -12,6 +12,6 @@ class CheckInReminderJob < ApplicationJob
   end
 
   def notify(user, club)
-    UserMailer.with(user: user, club: club).check_in_reminder.deliver_later
+    UserMailer.with(user: user, club: club).check_in.deliver_later
   end
 end

@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
-  def check_in_reminder
+  def check_in
     email = params[:user].email || params[:email]
     clubs = [params[:club]] || User.find_by(email: email).clubs
 
