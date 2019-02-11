@@ -1,3 +1,5 @@
+# This is turned off in favor of https://zapier.com/app/editor/52014006
+
 class CheckInReminderJob < ApplicationJob
   queue_as :default
 
