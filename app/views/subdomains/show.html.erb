@@ -3,7 +3,7 @@
 <h1 class="heading break-word">
   <span>
     Subdomain:
-    <span class="h1 muted"><%= @subdomain.full_url %></span>
+    <a class="h1 muted" href="http://<%= @subdomain.full_url %>"><%= @subdomain.full_url %></a>
     <%= badge_for @subdomain.status_description, class: "bg-#{@subdomain.status_type} h4 ml0" %>
   </span>
   <%= link_to 'Edit', edit_subdomain_path(@subdomain), class: 'btn bg-ino' %>
