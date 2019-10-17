@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :signed_in_leader_or_admin, except: [:index]
+  before_action :signed_in_leader_or_admin, except: [:index, :show]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   # GET /posts
